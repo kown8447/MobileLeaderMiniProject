@@ -1,4 +1,4 @@
-package kr.or.model;
+package com.msg.service;
 
 import java.io.File;
 import java.lang.management.ClassLoadingMXBean;
@@ -7,23 +7,20 @@ import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
 import java.lang.management.RuntimeMXBean;
 import java.lang.management.ThreadMXBean;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
 
 import com.sun.management.OperatingSystemMXBean;
 
+@Service
 public class UseMxBean {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new UseMxBean();
-	}
 
 	/*
 	 * 디스크용량
 	 */
-	private void showDisk() {
+	public Map<String, String> showDisk() {
 		File root = null;
 
 		try {
@@ -33,45 +30,36 @@ public class UseMxBean {
 			System.out.println("Usable Space: " + toMB(root.getUsableSpace()));
 
 			/* added by cafe mocha */
-			//System.exit(0);
+			// System.exit(0);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		Map<String, String> diskInfo = new HashMap<String, String>();
+		diskInfo.put("total", toMB(root.getTotalSpace()));
+		diskInfo.put("usable", toMB(root.getUsableSpace()));
+		return diskInfo;
 	}
 
 	private void showRuntime() {
 		RuntimeMXBean runbean = (RuntimeMXBean) ManagementFactory.getRuntimeMXBean();
 	}
 
-	/*
-	 * cpu 사용량
-	 */
-	public void showCPU(){
-		final OperatingSystemMXBean osBean = (com.sun.management.OperatingSystemMXBean)ManagementFactory.getOperatingSystemMXBean();
-		   
-		   double load;
-		 
-		   while(true){
-		     load = osBean.getSystemCpuLoad();
-		     
-		     if(load < 0.0)
-		       continue;
-		     
-		     System.out.println("CPU Usage : "+load*100.0+"%");
-		     try {
-		       Thread.sleep(2000);
-		     } catch (InterruptedException e) {
-		       e.printStackTrace();
-		     }
-		   }
+	/*cpu 사용량*/
+	public double showCPU() {
+		final OperatingSystemMXBean osBean = (com.sun.management.OperatingSystemMXBean) ManagementFactory
+				.getOperatingSystemMXBean();
+
+		double load,cpuUsage;
+		load = osBean.getSystemCpuLoad();
+		cpuUsage = load*100.0;
+		
+		return cpuUsage;
 	}
-	
-	/*
-	 * 메모리 사용량
-	 */
-	private void showMemory() {
+
+	/*메모리 사용량*/
+	public Map<String, String> showMemory() {
 		MemoryMXBean membean = (MemoryMXBean) ManagementFactory.getMemoryMXBean();
 
 		MemoryUsage heap = membean.getHeapMemoryUsage();
@@ -79,7 +67,13 @@ public class UseMxBean {
 
 		MemoryUsage nonheap = membean.getNonHeapMemoryUsage();
 		System.out.println("NonHeap Memory: " + nonheap.toString());
-
+		
+		Map<String, String> result = new HashMap<String, String>();
+		
+		result.put("heap", heap.toString());
+		result.put("nonheap", nonheap.toString());
+		
+		return result;
 	}
 
 	private void showClassLoading() {
@@ -105,13 +99,22 @@ public class UseMxBean {
 
 	}
 
-	/**
-	 * OS 정보
-	 */
-	private void showOSBean() {
+	/*OS 정보*/
+	public Map<String, Object> showOSBean() {
 
 		OperatingSystemMXBean osbean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-
+		Map<String, Object> OsInfo = new HashMap<String, Object>();
+		
+		OsInfo.put("os1", osbean.getName());
+		OsInfo.put("os2", osbean.getArch());
+		OsInfo.put("os3", osbean.getAvailableProcessors());
+		OsInfo.put("os4", toMB(osbean.getTotalPhysicalMemorySize()));
+		OsInfo.put("os5", toMB(osbean.getFreePhysicalMemorySize()));
+		OsInfo.put("os6", toMB(osbean.getTotalSwapSpaceSize()));
+		OsInfo.put("os7", toMB(osbean.getFreeSwapSpaceSize()));
+		OsInfo.put("os8", toMB(osbean.getCommittedVirtualMemorySize()));
+		OsInfo.put("os9", osbean.getSystemLoadAverage());
+		
 		System.out.println("OS Name: " + osbean.getName());
 		System.out.println("OS Arch: " + osbean.getArch());
 		System.out.println("Available Processors: " + osbean.getAvailableProcessors());
@@ -121,6 +124,8 @@ public class UseMxBean {
 		System.out.println("FreeSwapSpaceSize: " + toMB(osbean.getFreeSwapSpaceSize()));
 		System.out.println("CommittedVirtualMemorySize: " + toMB(osbean.getCommittedVirtualMemorySize()));
 		System.out.println("SystemLoadAverage: " + osbean.getSystemLoadAverage());
+		
+		return OsInfo;
 
 	}
 
