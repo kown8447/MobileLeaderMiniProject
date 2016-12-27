@@ -17,6 +17,7 @@
 			}
 </style>
 <script>
+	var cpuArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	$(function(){
 		$.ajax(
 			{
@@ -43,8 +44,43 @@
 						dataType:"json",
 						success:function(data){
 							$('#cpuUsage').text(data.cpuUsage+'%');
-							
 							var cpuusage = Math.floor(data.cpuUsage);
+							for(var i=9; i>0; i--){
+								cpuArray[i] = cpuArray[i-1];
+							}
+							cpuArray[0] = cpuusage;
+							
+							/* cpu Usage Chart 2 START */
+							Highcharts.chart('cpuusagechart2', {
+
+						        title: {
+						            text: ''
+						        },
+
+						        xAxis: {
+						            tickInterval: 1,
+						        },
+
+						        yAxis: {
+						            type: 'logarithmic',
+						            minorTickInterval: 0.1,
+						            max: 99
+						        },
+
+						        tooltip: {
+						            headerFormat: '<b>cpu usage</b><br/>',
+						            pointFormat: '{point.y}%'
+						        },
+
+						        series: [{
+						            data: cpuArray,
+						            pointStart: 1
+						        }]
+						    });
+							/* cpu Usage Chart 2 END */
+							
+							
+							/* cpu Usage Chart 1 START */
 							var gaugeOptions = {
 
 							        chart: {
@@ -100,7 +136,7 @@
 							    };
 
 							    // The speed gauge
-							    var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+							    var chartSpeed = Highcharts.chart('cpuusagechart1', Highcharts.merge(gaugeOptions, {
 							        yAxis: {
 							            min: 0,
 							            max: 100,
@@ -185,6 +221,7 @@
 							            point.update(newVal);
 							        }
 							    }, 2000);
+							    /* cpu Usage Chart 1 END */
 						}
 					}		
 				);
@@ -283,8 +320,9 @@
 		<div class="col-md-6">
 			cpu 사용량 : <div id="cpuUsage"></div><br>
 			<div style="width: 600px; height: 400px; margin: 0 auto">
-    			<div id="container-speed" style="width: 300px; height: 200px; float: left"></div>
+    			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left"></div>
 			</div>
+			<div id="cpuusagechart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 		</div>
 	</div>
 	<div class="row">
