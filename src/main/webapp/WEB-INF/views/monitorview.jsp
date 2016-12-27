@@ -168,7 +168,7 @@
 						}
 					}		
 				);
-		}, 1000);
+		}, 2500);
 		
 		memoryInfo = setInterval(function() {
 			$.ajax(
@@ -266,7 +266,8 @@
     			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left"></div>
 				<div id="cpuusagechart2" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
 			</div>
-	</div>
+		</div>
+	</div>	
 	<div class="row">
 		<div class="col-md-6">
 			heapMemory 사용량 : <div id="heap"></div><br>
