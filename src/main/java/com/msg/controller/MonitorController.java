@@ -48,7 +48,7 @@ public class MonitorController {
 	
 	@RequestMapping("diskAjax.htm")
 	public View getDiskInfo(Model model){
-		Map<String, String> diskInfo = useMxBean.showDisk();
+		Map<String, Integer> diskInfo = useMxBean.showDisk();
 		model.addAttribute("diskInfo", diskInfo);
 		return jsonview;
 	}

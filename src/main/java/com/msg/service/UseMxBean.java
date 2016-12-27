@@ -20,7 +20,7 @@ public class UseMxBean {
 	/*
 	 * 디스크용량
 	 */
-	public Map<String, String> showDisk() {
+	public Map<String, Integer> showDisk() {
 		File root = null;
 
 		try {
@@ -36,9 +36,10 @@ public class UseMxBean {
 			e.printStackTrace();
 		}
 		
-		Map<String, String> diskInfo = new HashMap<String, String>();
-		diskInfo.put("total", toMB(root.getTotalSpace()));
-		diskInfo.put("usable", toMB(root.getUsableSpace()));
+		Map<String, Integer> diskInfo = new HashMap<String, Integer>();
+		diskInfo.put("total", toMBNonString(root.getTotalSpace()));
+		diskInfo.put("usable", toMBNonString(root.getUsableSpace()));
+		diskInfo.put("use", toMBNonString(root.getTotalSpace()-root.getUsableSpace()));
 		return diskInfo;
 	}
 
@@ -145,14 +146,16 @@ public class UseMxBean {
 		seperator();
 	}
 
-	/* added cafe mocha 2009-06 */
 	private void seperator() {
 		System.out.println("-----------------------------------------------");
 	}
 
-	/* added cafe mocha 2009-06 */
 	private String toMB(long size) {
 		return (int) (size / (1024 * 1024)) + "(MB)";
+	}
+	
+	private int toMBNonString(long size) {
+		return (int) (size / (1024 * 1024));
 	}
 
 }
