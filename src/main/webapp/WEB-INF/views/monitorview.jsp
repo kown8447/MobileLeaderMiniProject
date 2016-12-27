@@ -9,7 +9,15 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<style type="text/css">
+			.highcharts-yaxis-grid .highcharts-grid-line {
+				display: none;
+			}
+</style>
 <script>
+	var cpuArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	$(function(){
 		$.ajax(
 			{
@@ -36,6 +44,184 @@
 						dataType:"json",
 						success:function(data){
 							$('#cpuUsage').text(data.cpuUsage+'%');
+							var cpuusage = Math.floor(data.cpuUsage);
+							for(var i=9; i>0; i--){
+								cpuArray[i] = cpuArray[i-1];
+							}
+							cpuArray[0] = cpuusage;
+							
+							/* cpu Usage Chart 2 START */
+							Highcharts.chart('cpuusagechart2', {
+
+						        title: {
+						            text: ''
+						        },
+
+						        xAxis: {
+						            tickInterval: 1,
+						        },
+
+						        yAxis: {
+						            type: 'logarithmic',
+						            minorTickInterval: 0.1,
+						            max: 99
+						        },
+
+						        tooltip: {
+						            headerFormat: '<b>cpu usage</b><br/>',
+						            pointFormat: '{point.y}%'
+						        },
+
+						        series: [{
+						            data: cpuArray,
+						            pointStart: 1
+						        }]
+						    });
+							/* cpu Usage Chart 2 END */
+							
+							
+							/* cpu Usage Chart 1 START */
+							var gaugeOptions = {
+
+							        chart: {
+							            type: 'solidgauge'
+							        },
+
+							        title: null,
+
+							        pane: {
+							            center: ['50%', '85%'],
+							            size: '140%',
+							            startAngle: -90,
+							            endAngle: 90,
+							            background: {
+							                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+							                innerRadius: '60%',
+							                outerRadius: '100%',
+							                shape: 'arc'
+							            }
+							        },
+
+							        tooltip: {
+							            enabled: false
+							        },
+
+							        // the value axis
+							        yAxis: {
+							            stops: [
+							                [0.1, '#55BF3B'], // green
+							                [0.3, '#DDDF0D'], // yellow
+							                [0.5, '#DF5353'] // red
+							            ],
+							            lineWidth: 0,
+							            minorTickInterval: null,
+							            tickAmount: 2,
+							            title: {
+							                y: -70
+							            },
+							            labels: {
+							                y: 16
+							            }
+							        },
+
+							        plotOptions: {
+							            solidgauge: {
+							                dataLabels: {
+							                    y: 5,
+							                    borderWidth: 0,
+							                    useHTML: true
+							                }
+							            }
+							        }
+							    };
+
+							    // The speed gauge
+							    var chartSpeed = Highcharts.chart('cpuusagechart1', Highcharts.merge(gaugeOptions, {
+							        yAxis: {
+							            min: 0,
+							            max: 100,
+							            title: {
+							                text: 'CPU usage'
+							            }
+							        },
+
+							        credits: {
+							            enabled: false
+							        },
+
+							        series: [{
+							            name: 'CPU usage',
+							            data: [cpuusage],
+							            dataLabels: {
+							                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+							                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+							                       '<span style="font-size:12px;color:silver">%</span></div>'
+							            },
+							            tooltip: {
+							                valueSuffix: ' % '
+							            }
+							        }]
+
+							    }));
+
+							    // The RPM gauge
+							    var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+							        yAxis: {
+							            min: 0,
+							            max: 5,
+							            title: {
+							                text: 'RPM'
+							            }
+							        },
+
+							        series: [{
+							            name: 'RPM',
+							            data: [1],
+							            dataLabels: {
+							                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+							                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+							                       '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
+							            },
+							            tooltip: {
+							                valueSuffix: ' revolutions/min'
+							            }
+							        }]
+
+							    }));
+
+							    // Bring life to the dials
+							    setInterval(function () {
+							        // Speed
+							        var point,
+							            newVal,
+							            inc;
+
+							        if (chartSpeed) {
+							            point = chartSpeed.series[0].points[0];
+							            inc = Math.round((Math.random() - 0.5) * 100);
+							            newVal = point.y + inc;
+
+							            if (newVal < 0 || newVal > 100) {
+							                newVal = point.y - inc;
+							            }
+
+							            point.update(newVal);
+							        }
+
+							        // RPM
+							        if (chartRpm) {
+							            point = chartRpm.series[0].points[0];
+							            inc = Math.random() - 0.5;
+							            newVal = point.y + inc;
+
+							            if (newVal < 0 || newVal > 5) {
+							                newVal = point.y - inc;
+							            }
+
+							            point.update(newVal);
+							        }
+							    }, 2000);
+							    /* cpu Usage Chart 1 END */
 						}
 					}		
 				);
@@ -110,7 +296,6 @@
 					}
 				}
 			);
-		
 	});
 </script>
 
@@ -134,6 +319,10 @@
 		</div>
 		<div class="col-md-6">
 			cpu 사용량 : <div id="cpuUsage"></div><br>
+			<div style="width: 600px; height: 400px; margin: 0 auto">
+    			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left"></div>
+			</div>
+			<div id="cpuusagechart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 		</div>
 	</div>
 	<div class="row">
