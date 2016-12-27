@@ -164,63 +164,6 @@
 
 							    }));
 
-							    // The RPM gauge
-							    var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
-							        yAxis: {
-							            min: 0,
-							            max: 5,
-							            title: {
-							                text: 'RPM'
-							            }
-							        },
-
-							        series: [{
-							            name: 'RPM',
-							            data: [1],
-							            dataLabels: {
-							                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-							                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
-							                       '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
-							            },
-							            tooltip: {
-							                valueSuffix: ' revolutions/min'
-							            }
-							        }]
-
-							    }));
-
-							    // Bring life to the dials
-							    setInterval(function () {
-							        // Speed
-							        var point,
-							            newVal,
-							            inc;
-
-							        if (chartSpeed) {
-							            point = chartSpeed.series[0].points[0];
-							            inc = Math.round((Math.random() - 0.5) * 100);
-							            newVal = point.y + inc;
-
-							            if (newVal < 0 || newVal > 100) {
-							                newVal = point.y - inc;
-							            }
-
-							            point.update(newVal);
-							        }
-
-							        // RPM
-							        if (chartRpm) {
-							            point = chartRpm.series[0].points[0];
-							            inc = Math.random() - 0.5;
-							            newVal = point.y + inc;
-
-							            if (newVal < 0 || newVal > 5) {
-							                newVal = point.y - inc;
-							            }
-
-							            point.update(newVal);
-							        }
-							    }, 2000);
 							    /* cpu Usage Chart 1 END */
 						}
 					}		
@@ -319,11 +262,10 @@
 		</div>
 		<div class="col-md-6">
 			cpu 사용량 : <div id="cpuUsage"></div><br>
-			<div style="width: 600px; height: 400px; margin: 0 auto">
+			<div style="width: 400px; height: 400px; margin: 0 auto">
     			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left"></div>
+				<div id="cpuusagechart2" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
 			</div>
-			<div id="cpuusagechart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6">
