@@ -7,6 +7,7 @@ import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
 import java.lang.management.RuntimeMXBean;
 import java.lang.management.ThreadMXBean;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +55,7 @@ public class UseMxBean {
 
 		double load,cpuUsage;
 		load = osBean.getSystemCpuLoad();
-		cpuUsage = load*100.0;
+		cpuUsage = Math.round(load*100.0);
 		
 		return cpuUsage;
 	}

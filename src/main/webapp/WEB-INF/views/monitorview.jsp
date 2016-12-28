@@ -36,10 +36,15 @@
 			</table>
 		</div>
 		<div class="col-md-6">
-			cpu 사용량 : <div id="cpuUsage"></div><br>
-			<div style="width: 700px; height: 400px; margin: 0 auto">
-    			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left"></div>
-				<div id="cpuusagechart2" style="width: 310px; height: 200px; float: left; margin: 0 auto"></div>
+			<form class="form-inline" style="text-align: center; margin-top: 5%">
+				<div class="form-group">
+					<label for="exampleInputName2" style="color: blue">cpu 사용량 :</label> 
+					<span id="cpuUsage"></span>
+				</div>
+			</form>
+			<div style="width: 700px; height: 400px; margin: 0% auto">
+    			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left; margin-top: 10%"></div>
+				<div id="cpuusagechart2" style="width: 310px; height: 200px; float: left; margin: 10% auto"></div>
 			</div>
 		</div>
 	</div>	
