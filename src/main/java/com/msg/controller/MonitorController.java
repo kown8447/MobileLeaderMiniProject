@@ -1,5 +1,6 @@
 package com.msg.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,22 @@ public class MonitorController {
 	
 	@RequestMapping("diskAjax.htm")
 	public View getDiskInfo(Model model){
-		Map<String, Integer> diskInfo = useMxBean.showDisk();
+		Map<String, Double> diskInfo = useMxBean.showAllDisk();
 		model.addAttribute("diskInfo", diskInfo);
+		return jsonview;
+	}
+	
+	@RequestMapping("checkProccess.htm")
+	public View checkRunningProccess(Model model){
+		List<Object> lists = useMxBean.checkRunningProcess();
+		model.addAttribute("proccess", lists);
+		return jsonview;
+	}
+	
+	@RequestMapping("checkDiskDetail.htm")
+	public View checkDiskDetail(Model model){
+		List<Map<String, Object>> lists = useMxBean.checkDiskDetail();
+		model.addAttribute("disklist", lists);
 		return jsonview;
 	}
 }

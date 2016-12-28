@@ -169,9 +169,9 @@ $(function(){
 				url:"diskAjax.htm",
 				dataType:"json",
 				success:function(data){
-					$('#total').text(data.diskInfo.total+'MB');
-					$('#usable').text(data.diskInfo.usable+'MB');
-					$('#use').text(data.diskInfo.use+'MB');
+					$('#total').text(data.diskInfo.total+'GB');
+					$('#usable').text(data.diskInfo.usable+'GB');
+					$('#use').text(data.diskInfo.use+'GB');
 					
 					var usePercent = data.diskInfo.use/data.diskInfo.total*100;
 					var usablePercent = data.diskInfo.usable/data.diskInfo.total*100;
@@ -224,4 +224,44 @@ $(function(){
 				}
 			}
 		);
+	
+	$('#checkProcess').click(function(){
+		$.ajax(
+			{
+				url:"checkProccess.htm",
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data.proccess,function(key,value) {
+						var split = value.split(',');
+						content += '<tr><td>'+split[0].replace(/"/g, '')+'</td><td>'+split[1].replace(/"/g, '')+'</td><td>'+split[2].replace(/"/g, '')+'</td><td>'+split[4].replace(/"/g, '');
+						if(split[5] != undefined){
+							content+=split[5].replace(/"/g, '');
+						}
+						content += '</td></tr>';
+					});
+					$('#resultTable').append(content);
+					$('#layerpop').modal();
+				}
+			}
+		);
+	});
+	
+	$('#checkDiskDetail').click(function(){
+		$.ajax(
+			{
+				url:"checkDiskDetail.htm",
+				dataType:"json",
+				success:function(data){
+					console.log(data.disklist);
+					var content = "";
+					$.each(data.disklist,function(key,value) {
+						content += '<tr><td>'+value.name+'</td><td>'+value.total+'</td><td>'+value.usable+'</td><td>'+value.used+'</td></tr>';
+					});
+					$('#resultDiskDetail').append(content);
+					$('#diskDetail').modal();
+				}
+			}
+		);
+	});
 });
