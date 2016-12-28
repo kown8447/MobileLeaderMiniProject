@@ -176,6 +176,10 @@ $(function(){
 					var usePercent = data.diskInfo.use/data.diskInfo.total*100;
 					var usablePercent = data.diskInfo.usable/data.diskInfo.total*100;
 					
+					Highcharts.setOptions({
+				        colors: ['#FF0000', '#4000FF', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+				    });
+					
 				    Highcharts.chart('container', {
 				        chart: {
 				            plotBackgroundColor: null,
@@ -203,7 +207,7 @@ $(function(){
 				            }
 				        },
 				        series: [{
-				            name: 'Brands',
+				            name: 'Space',
 				            colorByPoint: true,
 				            data: [{
 				                name: '사용한 공간',

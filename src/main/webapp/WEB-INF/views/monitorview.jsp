@@ -23,7 +23,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-6">
-			<table class="table">
+			<table class="table table-striped table-condensed table-hover" style="width: 80%; margin-left: 3%; margin-top: 7%">
 				<tr style="text-align:center"><td colspan="2">OS 정보</td></tr>
 				<tr><td>OS name</td><td id="os1"></td></tr>
 				<tr><td>OS Arch</td><td id="os2"></td></tr>
@@ -33,7 +33,6 @@
 				<tr><td>TotalSwapSpaceSize</td><td id="os6"></td></tr>
 				<tr><td>FreeSwapSpaceSize</td><td id="os7"></td></tr>
 				<tr><td>CommittedVirtualMemorySize</td><td id="os8"></td></tr>
-				<tr><td>SystemLoadAverage</td><td id="os9"></td></tr>
 			</table>
 		</div>
 		<div class="col-md-6">
@@ -49,10 +48,27 @@
 			heapMemory 사용량 : <div id="heap"></div><br>
 			NonheapMemory 사용량 : <div id="nonheap"></div><br>
 		</div>
-		<div class="col-md-6">
-			disk 공간 : <div id="total"></div><br>
-			disk 사용한 공간 : <div id="use"></div><br>
-			disk 사용가능 공간 : <div id="usable"></div>
+		<div class="col-md-2" style="margin-top: 10%">
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">전체 공간</label> 
+					<span id="total"></span>
+				</div>
+			</form>
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2" style="color:red">사용 공간</label> 
+					<span id="use"></span>
+				</div>
+			</form>
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2" style="color:blue">사용가능 공간</label> 
+					<span id="usable"></span>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4">
 			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 		</div>
 	</div>
