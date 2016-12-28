@@ -26,10 +26,10 @@ $(function(){
 					success:function(data){
 						$('#cpuUsage').text(data.cpuUsage+'%');
 						var cpuusage = Math.floor(data.cpuUsage);
-						for(var i=9; i>0; i--){
-							cpuArray[i] = cpuArray[i-1];
+						for(var i=0; i<10; i++){
+							cpuArray[i] = cpuArray[i+1];
 						}
-						cpuArray[0] = cpuusage;
+						cpuArray[9] = cpuusage;
 						
 						/* cpu Usage Chart 2 START */
 						Highcharts.chart('cpuusagechart2', {

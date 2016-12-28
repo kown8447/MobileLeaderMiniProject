@@ -37,9 +37,9 @@
 		</div>
 		<div class="col-md-6">
 			cpu 사용량 : <div id="cpuUsage"></div><br>
-			<div style="width: 400px; height: 400px; margin: 0 auto">
+			<div style="width: 700px; height: 400px; margin: 0 auto">
     			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left"></div>
-				<div id="cpuusagechart2" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
+				<div id="cpuusagechart2" style="width: 310px; height: 200px; float: left; margin: 0 auto"></div>
 			</div>
 		</div>
 	</div>	
