@@ -265,6 +265,7 @@ $(function(){
 						}
 						content += '</td></tr>';
 					});
+					$('#resultTable').empty();
 					$('#resultTable').append(content);
 					$('#layerpop').modal();
 				}
@@ -287,6 +288,7 @@ $(function(){
 					$.each(data.disklist,function(key,value) {
 						content += '<tr><td>'+value.name+'</td><td>'+value.total+'</td><td>'+value.usable+'</td><td>'+value.used+'</td></tr>';
 					});
+					$('#resultDiskDetail').empty();
 					$('#resultDiskDetail').append(content);
 					$('#diskDetail').modal();
 				}
