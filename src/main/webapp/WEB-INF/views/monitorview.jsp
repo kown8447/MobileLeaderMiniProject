@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!--
+	@project : MSG SystemMonitor
+	@File name : monitorview.jsp
+	@Date : 2017.01.09
+	@Desc : CPU, Memory, Disk, OS 정보를 한 화면에 4분할 하여 대시보드 형태로 출력하는 View 페이지 
+ -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,6 +32,9 @@
 <body>
 	<div class="row">
 		<div class="col-md-6">
+		<!-------------------------------------------------------------------------- 
+						OS 정보를 Table 형태로 보여주는 부분
+		 ---------------------------------------------------------------------------->
 			<table class="table table-striped table-condensed table-hover" style="width: 80%; margin-left: 3%; margin-top: 7%">
 				<tr><th colspan="2" style="text-align: center">OS 정보</td></tr>
 				<tr><td style="width: 50%">OS name</td><td id="os1" style="text-align: center"></td></tr>
@@ -37,6 +48,9 @@
 			</table>
 		</div>
 		<div class="col-md-6">
+		<!-------------------------------------------------------------------------- 
+						CPU 사용량을 텍스트 형식으로 보여주는 부분
+		 ---------------------------------------------------------------------------->
 			<form class="form-inline" style="text-align: center; margin-top: 5%">
 				<div class="form-group">
 					<label for="exampleInputName2" style="color: blue">cpu 사용량 :</label> 
@@ -46,6 +60,9 @@
 					</div>
 				</div>
 			</form>
+			<!-------------------------------------------------------------------------- 
+						CPU 사용량을 Chart 형태로 보여주는 부분
+		 ---------------------------------------------------------------------------->
    			<div class="row" id="cpuusagechart1" style="width: 450px; height: 200px; float: left; margin-top: 5%"></div>
 			<div class="row" id="cpuusagechart2" style="width: 450px; height: 200px; float: left; margin: 5% auto"></div>
 		</div>
@@ -55,6 +72,9 @@
 			heapMemory 사용량 : <div id="heap"></div><br>
 			NonheapMemory 사용량 : <div id="nonheap"></div><br>
 		</div>
+		<!-------------------------------------------------------------------------- 
+						DISK 용량을 텍스트 형태로 보여주는 부분
+		 ---------------------------------------------------------------------------->
 		<div class="col-md-2" style="margin-top: 10%">
 			<form class="form-inline">
 				<div class="form-group">
@@ -76,11 +96,17 @@
 			</form>
 			<input type="button" id="checkDiskDetail" class="btn btn-default" value="파티션별 용량 확인"/>
 		</div>
+		<!-------------------------------------------------------------------------- 
+						DISK 용량을 Chart 형태로 보여주는 부분
+		 ---------------------------------------------------------------------------->
 		<div class="col-md-4">
 			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 		</div>
 	</div>
 
+	<!-------------------------------------------------------------------------- 
+						현재 실행중인 프로세스 정보를 출력하는 Modal 부분
+		 ---------------------------------------------------------------------------->
 	<div class="modal fade" id="layerpop">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content modal-lg">
@@ -107,6 +133,9 @@
 		</div>
 	</div>
 
+	<!-------------------------------------------------------------------------- 
+						파티션별 DISK 용량을 출력하는 Modal 부분
+		 ---------------------------------------------------------------------------->
 	<div class="modal fade" id="diskDetail">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content modal-lg">
@@ -132,7 +161,5 @@
 			</div>
 		</div>
 	</div>
-
-	
 </body>
 </html>

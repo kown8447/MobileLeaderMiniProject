@@ -1,5 +1,15 @@
+/*
+ * @javascript name : monitorview.js
+ * @date : 2017.01.09
+ * @description : monitorview.jsp 에 사용되는 Chart 및 Ajax 비동기 통신 정보를 출력하기 위한 스크립트
+*/
 var cpuArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 $(function(){
+	
+	/*
+	 * @method name : ajax 익명 함수
+	 * @description : OS 정보를 JSP 의 Table에 출력하는 함수
+	*/
 	$.ajax(
 		{
 			url:"OsAjax.htm",
@@ -13,11 +23,14 @@ $(function(){
 				$('#os6').text(data.osInfo.os6);
 				$('#os7').text(data.osInfo.os7);
 				$('#os8').text(data.osInfo.os8);
-				$('#os9').text(data.osInfo.os9);
 			}
 		}
 	);
 	
+	/*
+	 * @method name : cpuUsage
+	 * @description : CPU 사용량을 실시간으로 표시하기 위해 사용되는 재귀 호출 함수
+	*/
 	cpuUsage = setInterval(function() {
 		$.ajax(
 				{
@@ -151,6 +164,10 @@ $(function(){
 			);
 	}, 2500);
 	
+	/*
+	 * @method name : memoryInfo
+	 * @description : 메모리 사용량을 실시간으로 표시하기 위해 사용되는 재귀 호출 함수
+	*/
 	memoryInfo = setInterval(function() {
 		$.ajax(
 				{
@@ -164,6 +181,10 @@ $(function(){
 			);
 	}, 1000);
 	
+	/*
+	 * @method name : ajax 익명함수
+	 * @description : 디스크 용량을 표시하는 함수
+	*/
 	$.ajax(
 			{
 				url:"diskAjax.htm",
@@ -225,6 +246,10 @@ $(function(){
 			}
 		);
 	
+	/*
+	 * @method name : checkProcess 익명함수
+	 * @description : 현재 실행중인 프로세스의 정보를 Modal 로 출력해 주는 함수
+	*/
 	$('#checkProcess').click(function(){
 		$.ajax(
 			{
@@ -247,6 +272,10 @@ $(function(){
 		);
 	});
 	
+	/*
+	 * @method name : checkDiskDetail 익명함수
+	 * @description : 파티션별 용량 정보를 Modal 로 출력해 주는 함수
+	*/
 	$('#checkDiskDetail').click(function(){
 		$.ajax(
 			{
