@@ -68,9 +68,17 @@
 		</div>
 	</div>	
 	<div class="row">
-		<div class="col-md-6">
-			heapMemory 사용량 : <div id="heap"></div><br>
-			NonheapMemory 사용량 : <div id="nonheap"></div><br>
+		<div class="col-md-6" style="float:left;">
+		<!-------------------------------------------------------------------------- 
+						MEMORY 사용량을 Percentage로 보여주는 부분
+		 ---------------------------------------------------------------------------->
+			<div id="usedMemoryByGB" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:5%;"></div>
+			<div id="memoryChart" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left; "></div>
+		<!-------------------------------------------------------------------------- 
+						MEMORY 사용량을 그래프 형태로 보여주는 부분
+		 ---------------------------------------------------------------------------->	
+			<div id="usedMemory" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:10%;"></div>
+			<div id="memoryContainer" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left;"></div>
 		</div>
 		<!-------------------------------------------------------------------------- 
 						DISK 용량을 텍스트 형태로 보여주는 부분

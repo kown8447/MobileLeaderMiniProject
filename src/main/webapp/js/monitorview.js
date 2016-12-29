@@ -4,6 +4,7 @@
  * @description : monitorview.jsp 에 사용되는 Chart 및 Ajax 비동기 통신 정보를 출력하기 위한 스크립트
 */
 var cpuArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var memoryArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 $(function(){
 	
 	/*
@@ -174,12 +175,210 @@ $(function(){
 					url:"memoryAjax.htm",
 					dataType:"json",
 					success:function(data){
-						$('#heap').text(data.memoryInfo.heap);
-						$('#nonheap').text(data.memoryInfo.nonheap);
+						var totalMemory = data.memoryInfo.totalMemory;
+						var freeMemory = data.memoryInfo.freeMemory;
+						var usedMemory = data.memoryInfo.usedMemory;
+						//var usedMemoryByGB  = data.memoryInfo.usedMemoryByGB;
+						
+						//$('#totalMemory').html("실제 메모리 : <br>" + totalMemory + "MB");
+						//$('#freeMemory').html("사용 가능한 메모리 : <br>" + freeMemory + "MB");
+						$('#usedMemory').html("<font color='red'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
+						$('#usedMemoryByGB').html("<font color='red'><b>실제 메모리 : </b></font><br>" + totalMemory + "MB<br>"
+								+ "<font color='green'><b>사용 가능한 메모리 : </b></font><br>" + freeMemory + "MB<br>"
+								+ "<font color='blue'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
+						
+						for(var i=0; i<9; i++){
+							memoryArray[i] = memoryArray[i+1];
+						}
+						memoryArray[9] = usedMemory;
+						
+						Highcharts.chart('memoryContainer', {
+					        chart: {
+					            type: 'spline'
+					        },
+					        title: {
+					            text: '메모리 사용량'
+					        },
+					        subtitle: {
+					            text: 'Memory 사용량 실시간 출력'
+					        },
+					        xAxis: {
+					            tickInterval : 1
+					        },
+					        yAxis: {
+					            title: {
+					                text: 'Memory Size (MB)'
+					            },
+					           /*  max : 5500,
+					            min : 4400, */
+					            tickInterval : 2,
+					            tickAmount : 5,
+					            minorGridLineWidth: 0,
+					            gridLineWidth: 0,
+					            alternateGridColor: null
+					            /* plotBands: [{ // Light air
+					                from: 4500,
+					                to: 4600,
+					                color: 'rgba(68, 170, 213, 0.1)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }, { // Light breeze
+					                from: 4600,
+					                to: 4700,
+					                color: 'rgba(0, 0, 0, 0)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }, { // Gentle breeze
+					                from: 4700,
+					                to: 4800,
+					                color: 'rgba(68, 170, 213, 0.1)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }, { // Moderate breeze
+					                from: 4800,
+					                to: 4900,
+					                color: 'rgba(0, 0, 0, 0)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }, { // Fresh breeze
+					                from: 4900,
+					                to: 5000,
+					                color: 'rgba(68, 170, 213, 0.1)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }, { // Strong breeze
+					                from: 5000,
+					                to: 5100,
+					                color: 'rgba(0, 0, 0, 0)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }, { // High wind
+					                from: 5100,
+					                to: 5300,
+					                color: 'rgba(68, 170, 213, 0.1)',
+					                label: {
+					                    text: '',
+					                    style: {
+					                        color: '#606060'
+					                    }
+					                }
+					            }] */
+					        },
+					        tooltip: {
+					            valueSuffix: 'MB'
+					        },
+					        plotOptions: {
+					            spline: {
+					                lineWidth: 3,
+					                states: {
+					                    hover: {
+					                        lineWidth: 5
+					                    }
+					                },
+					                marker: {
+					                    enabled: false
+					                },
+					                //pointInterval: 1, // one hour
+					                pointStart: 1,
+					                dataLabels: {
+					                    enabled: true,
+					                    style : {
+					                    	'fontSize' : '9px', 
+					                    	'fontWeight' : 'normal'
+					                    },
+					                    format : '{point.y:.0f}'
+					                }
+					            }
+					        },
+					        series: [{
+					            name: 'Used Memory',
+					            data: memoryArray
+					        }],
+					        navigation: {
+					            menuItemStyle: {
+					                fontSize: '10px'
+					            }
+					        }
+					    });
+						
+						
+						/* stacked column chart  */
+						Highcharts.chart('memoryChart', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: 'Memory'
+						        },
+						        xAxis: {
+						            categories: ['Memory']
+						        },
+						        yAxis: {
+						            //min: 0,
+						            tickAmount : 5,
+						            title: {
+						                text: 'Used Memory'
+						            }
+						        },
+						        tooltip: {
+						            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+						            shared: true
+						        },
+						        plotOptions: {
+						            column: {
+						                stacking: 'percent'
+						            },
+						            series: {
+						                dataLabels: {
+						                    enabled: true,
+						                    //borderRadius: 1,
+						                    //backgroundColor : 'red',
+						                    //y: -5,
+						                    //align : 'right',
+						                    verticalAlign : 'middle',
+						                    //color : 'red',
+						                    //shape: 'square',
+						                    format : '{point.percentage:.0f}%'
+						                }
+						            }
+						        },
+						        series: [{
+						            name: 'Free memory',
+						            data: [freeMemory]
+						        }, {
+						            name: 'Used memory',
+						            data: [usedMemory]
+						        }]
+						    });
+						
 					}
 				}		
 			);
-	}, 1000);
+	}, 3000);
 	
 	/*
 	 * @method name : ajax 익명함수

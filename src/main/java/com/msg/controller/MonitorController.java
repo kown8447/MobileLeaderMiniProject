@@ -58,7 +58,7 @@ public class MonitorController {
 	*/
 	@RequestMapping("memoryAjax.htm")
 	public View getMemoryInfo(Model model){
-		Map<String, String> memoryInfo = memoryInfoService.showMemory();
+		Map<String, Long> memoryInfo = memoryInfoService.showMemory();
 		model.addAttribute("memoryInfo", memoryInfo);
 		return jsonview;
 	}
