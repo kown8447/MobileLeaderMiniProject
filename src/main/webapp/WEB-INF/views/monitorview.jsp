@@ -72,13 +72,17 @@
 		<!-------------------------------------------------------------------------- 
 						MEMORY 사용량을 Percentage로 보여주는 부분
 		 ---------------------------------------------------------------------------->
-			<div id="usedMemoryByGB" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:5%;"></div>
-			<div id="memoryChart" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left; "></div>
+			<div class="row" style="margin-left: 10%">
+				<div id="usedMemoryByGB" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:5%;"></div>
+				<div id="memoryChart" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left; "></div>
+			</div>
 		<!-------------------------------------------------------------------------- 
 						MEMORY 사용량을 그래프 형태로 보여주는 부분
 		 ---------------------------------------------------------------------------->	
-			<div id="usedMemory" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:10%;"></div>
-			<div id="memoryContainer" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left;"></div>
+			<div class="row" style="margin-left: 10%">
+				<div id="usedMemory" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:10%;"></div>
+				<div id="memoryContainer" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left;"></div>
+			</div>
 		</div>
 		<!-------------------------------------------------------------------------- 
 						DISK 용량을 텍스트 형태로 보여주는 부분
