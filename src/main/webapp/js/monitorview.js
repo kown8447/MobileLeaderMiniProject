@@ -178,10 +178,6 @@ $(function(){
 						var totalMemory = data.memoryInfo.totalMemory;
 						var freeMemory = data.memoryInfo.freeMemory;
 						var usedMemory = data.memoryInfo.usedMemory;
-						//var usedMemoryByGB  = data.memoryInfo.usedMemoryByGB;
-						
-						//$('#totalMemory').html("실제 메모리 : <br>" + totalMemory + "MB");
-						//$('#freeMemory').html("사용 가능한 메모리 : <br>" + freeMemory + "MB");
 						$('#usedMemory').html("<font color='red'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
 						$('#usedMemoryByGB').html("<font color='red'><b>실제 메모리 : </b></font><br>" + totalMemory + "MB<br>"
 								+ "<font color='green'><b>사용 가능한 메모리 : </b></font><br>" + freeMemory + "MB<br>"
@@ -209,84 +205,11 @@ $(function(){
 					            title: {
 					                text: 'Memory Size (MB)'
 					            },
-					           /*  max : 5500,
-					            min : 4400, */
 					            tickInterval : 2,
 					            tickAmount : 5,
 					            minorGridLineWidth: 0,
 					            gridLineWidth: 0,
 					            alternateGridColor: null
-					            /* plotBands: [{ // Light air
-					                from: 4500,
-					                to: 4600,
-					                color: 'rgba(68, 170, 213, 0.1)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }, { // Light breeze
-					                from: 4600,
-					                to: 4700,
-					                color: 'rgba(0, 0, 0, 0)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }, { // Gentle breeze
-					                from: 4700,
-					                to: 4800,
-					                color: 'rgba(68, 170, 213, 0.1)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }, { // Moderate breeze
-					                from: 4800,
-					                to: 4900,
-					                color: 'rgba(0, 0, 0, 0)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }, { // Fresh breeze
-					                from: 4900,
-					                to: 5000,
-					                color: 'rgba(68, 170, 213, 0.1)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }, { // Strong breeze
-					                from: 5000,
-					                to: 5100,
-					                color: 'rgba(0, 0, 0, 0)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }, { // High wind
-					                from: 5100,
-					                to: 5300,
-					                color: 'rgba(68, 170, 213, 0.1)',
-					                label: {
-					                    text: '',
-					                    style: {
-					                        color: '#606060'
-					                    }
-					                }
-					            }] */
 					        },
 					        tooltip: {
 					            valueSuffix: 'MB'
@@ -302,7 +225,6 @@ $(function(){
 					                marker: {
 					                    enabled: false
 					                },
-					                //pointInterval: 1, // one hour
 					                pointStart: 1,
 					                dataLabels: {
 					                    enabled: true,
@@ -355,13 +277,7 @@ $(function(){
 						            series: {
 						                dataLabels: {
 						                    enabled: true,
-						                    //borderRadius: 1,
-						                    //backgroundColor : 'red',
-						                    //y: -5,
-						                    //align : 'right',
 						                    verticalAlign : 'middle',
-						                    //color : 'red',
-						                    //shape: 'square',
 						                    format : '{point.percentage:.0f}%'
 						                }
 						            }
