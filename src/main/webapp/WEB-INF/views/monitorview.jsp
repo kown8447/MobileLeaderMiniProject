@@ -46,11 +46,8 @@
 					</div>
 				</div>
 			</form>
-			<div style="width: 700px; height: 400px; margin: 0% auto">
-    			<div id="cpuusagechart1" style="width: 300px; height: 200px; float: left; margin-top: 10%"></div>
-				<div id="cpuusagechart2" style="width: 310px; height: 200px; float: left; margin: 10% auto"></div>
-			</div>
-			
+   			<div class="row" id="cpuusagechart1" style="width: 450px; height: 200px; float: left; margin-top: 5%"></div>
+			<div class="row" id="cpuusagechart2" style="width: 450px; height: 200px; float: left; margin: 5% auto"></div>
 		</div>
 	</div>	
 	<div class="row">
