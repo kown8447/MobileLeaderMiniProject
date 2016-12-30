@@ -371,7 +371,7 @@ $(function(){
 				url:"checkProccess.htm",
 				dataType:"json",
 				success:function(data){
-					var content = "";
+					var content = "<tr><th>Proccess Name</th><th>PID</th><th>Session Name</th><th>Memory Usage</th></tr>";
 					$.each(data.proccess,function(key,value) {
 						var split = value.split(',');
 						content += '<tr><td>'+split[0].replace(/"/g, '')+'</td><td>'+split[1].replace(/"/g, '')+'</td><td>'+split[2].replace(/"/g, '')+'</td><td>'+split[4].replace(/"/g, '');
@@ -399,7 +399,7 @@ $(function(){
 				dataType:"json",
 				success:function(data){
 					console.log(data.disklist);
-					var content = "";
+					var content = "<tr><th>Disk Name</th><th>Total Size(GB)</th><th>Usable Size(GB)</th><th>Used Size(GB)</th></tr>";
 					$.each(data.disklist,function(key,value) {
 						content += '<tr><td>'+value.name+'</td><td>'+value.total+'</td><td>'+value.usable+'</td><td>'+value.used+'</td></tr>';
 					});
