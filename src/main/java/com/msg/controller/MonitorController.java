@@ -14,6 +14,7 @@ import com.msg.service.CpuInfoService;
 import com.msg.service.DiskInfoService;
 import com.msg.service.MemoryInfoService;
 import com.msg.service.OsInfoService;
+import com.msg.service.TestService;
 import com.msg.service.UseMxBean;
 
 
@@ -32,14 +33,62 @@ public class MonitorController {
 	@Autowired private MemoryInfoService memoryInfoService;	//메모리 정보를 가지고 있는 서비스 클래스
 	@Autowired private OsInfoService osInfoService;	//OS정보를 가지고 있는 서비스 클래스
 	
+	@Autowired private TestService testservice;
+	
 	/*
 	 * @method name : goMonitorview
 	 * @description : 메인화면을 출력하기 위한 함수
 	*/
 	@RequestMapping("/main.htm")
 	public String goMonitorview(){
-		return "monitorview";
+		return "home.main";
 	}
+	
+	/*
+	 * @method name : monitorview
+	 * @description : 실시간 조회 페이지로 이동
+	*/
+	@RequestMapping("/admin.htm")
+	public String monitorview(){
+		return "admin.monitorview";
+	}
+	
+	/*
+	 * @method name : goOsInfo
+	 * @description : OS 정보 조회 페이지로 이동
+	*/
+	@RequestMapping("/osInfo.htm")
+	public String goOsInfo(){
+		return "os.osInfo";
+	}
+	
+	/*
+	 * @method name : goCpuInfo
+	 * @description : cpu 정보 조회 페이지로 이동
+	*/
+	@RequestMapping("/cpuInfo.htm")
+	public String goCpuInfo(){
+		return "cpu.cpuInfo";
+	}
+	
+	/*
+	 * @method name : goMemoryInfo
+	 * @description : memory 정보 조회 페이지로 이동
+	*/
+	@RequestMapping("/memoryInfo.htm")
+	public String goMemoryInfo(){
+		return "memory.memoryInfo";
+	}
+	
+	/*
+	 * @method name : goDiskInfo
+	 * @description : disk 정보 조회 페이지로 이동
+	*/
+	@RequestMapping("/diskInfo.htm")
+	public String goDiskInfo(){
+		return "disk.diskInfo";
+	}
+	
 	
 	/*
 	 * @method name : getCpuInfo
@@ -105,5 +154,12 @@ public class MonitorController {
 		List<Map<String, Object>> lists = diskInfoService.checkDiskDetail();
 		model.addAttribute("disklist", lists);
 		return jsonview;
+	}
+	
+	@RequestMapping("test.htm")
+	public String testMyBatis(){
+		int result = testservice.getBoardCount();
+		System.out.println("controller mapper test : " + result);
+		return "home.main";
 	}
 }
