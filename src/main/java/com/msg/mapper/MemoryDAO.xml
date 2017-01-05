@@ -7,4 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="memoryInfoInsert">
 		insert into memory(USEDMEMORY) values(#{usedmemory})
 	</insert>
+	<select id="getAllMemoryInfo" resultType="com.msg.dto.MemoryDTO">
+		select * from memory
+	</select>
 </mapper>

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="${pageContext.request.contextPath}/js/monitorview.js" type="text/javascript"></script>
 <title>Insert title here</title>
 </head>
 <body>

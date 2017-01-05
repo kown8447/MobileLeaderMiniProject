@@ -6,8 +6,12 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.msg.dao.CpuDAO;
+import com.msg.dto.CpuDTO;
 import com.sun.management.OperatingSystemMXBean;
 
 /*
@@ -18,6 +22,8 @@ import com.sun.management.OperatingSystemMXBean;
 
 @Service
 public class CpuInfoService {
+	
+	@Autowired private SqlSession sqlsession;
 	
 	/*
 	 * @method name : showCPU
@@ -63,5 +69,16 @@ public class CpuInfoService {
 		}
 
 		return processes;
+	}
+	
+	/*
+	 * @method name : getAllCpuInfo
+	 * @description : 
+	 * CPU DB내의 있는 모든 정보를 가져옴
+	*/
+	public List<CpuDTO> getAllCpuInfo(){
+		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);
+		List<CpuDTO> result = dao.getAllCpuInfo();
+		return result;
 	}
 }

@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import com.msg.dao.CpuDAO;
 import com.msg.dao.MemoryDAO;
+import com.msg.dto.CpuDTO;
+import com.msg.dto.MemoryDTO;
 import com.msg.service.CpuInfoService;
 import com.msg.service.MemoryInfoService;
-import com.spring.dto.CpuDTO;
-import com.spring.dto.MemoryDTO;
 
 public class DataInsertScheduler {
 

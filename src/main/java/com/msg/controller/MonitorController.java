@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import com.msg.dto.CpuDTO;
+import com.msg.dto.MemoryDTO;
 import com.msg.service.CpuInfoService;
 import com.msg.service.DiskInfoService;
 import com.msg.service.MemoryInfoService;
@@ -70,7 +72,9 @@ public class MonitorController {
 	 * @description : OS 정보 조회 페이지로 이동
 	*/
 	@RequestMapping("/osInfo.htm")
-	public String goOsInfo(){
+	public String goOsInfo(Model model){
+		Map<String, Object> data = osInfoService.showOSBean();
+		model.addAttribute("osInfo", data);
 		return "os.osInfo";
 	}
 	
@@ -79,7 +83,9 @@ public class MonitorController {
 	 * @description : cpu 정보 조회 페이지로 이동
 	*/
 	@RequestMapping("/cpuInfo.htm")
-	public String goCpuInfo(){
+	public String goCpuInfo(Model model){
+		List<CpuDTO> allcpuinfo = cpuInfoService.getAllCpuInfo();
+		model.addAttribute("allcpuinfo", allcpuinfo);
 		return "cpu.cpuInfo";
 	}
 	
@@ -88,7 +94,10 @@ public class MonitorController {
 	 * @description : memory 정보 조회 페이지로 이동
 	*/
 	@RequestMapping("/memoryInfo.htm")
-	public String goMemoryInfo(){
+	public String goMemoryInfo(Model model){
+		List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
+		System.out.println(list);
+		model.addAttribute("allmemory", list);
 		return "memory.memoryInfo";
 	}
 	
@@ -97,7 +106,11 @@ public class MonitorController {
 	 * @description : disk 정보 조회 페이지로 이동
 	*/
 	@RequestMapping("/diskInfo.htm")
-	public String goDiskInfo(){
+	public String goDiskInfo(Model model){
+		Map<String, Double> diskInfo = diskInfoService.showAllDisk();
+		List<Map<String, Object>> disklist = diskInfoService.checkDiskDetail();
+		model.addAttribute("diskInfo", diskInfo);
+		model.addAttribute("disklist", disklist);
 		return "disk.diskInfo";
 	}
 	

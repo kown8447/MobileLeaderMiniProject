@@ -1,4 +1,4 @@
-package com.spring.dto;
+package com.msg.dto;
 
 import java.sql.Date;
 
