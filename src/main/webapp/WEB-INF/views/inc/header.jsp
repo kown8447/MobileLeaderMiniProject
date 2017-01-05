@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -22,8 +23,16 @@
         <li><a href="${pageContext.request.contextPath}/memoryInfo.htm">Memory 정보</a></li>
         <li><a href="${pageContext.request.contextPath}/diskInfo.htm">Disk 정보</a></li>
         <li><a href="${pageContext.request.contextPath}/admin.htm">관리자(실시간 조회)</a></li>
-        <li><a href="${pageContext.request.contextPath}/test.htm">MyBatis Test</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+			<se:authorize access="isAnonymous()">
+				<li><a href="${pageContext.request.contextPath}/login.htm">로그인</a></li>
+			</se:authorize>
+			<se:authorize access="isAuthenticated()">
+				<li><a href="${pageContext.request.contextPath}/logout.htm">로그아웃</a></li>
+			</se:authorize>
+		</ul>
     </div><!-- /.navbar-collapse -->
+    
   </div><!-- /.container-fluid -->
 </nav>

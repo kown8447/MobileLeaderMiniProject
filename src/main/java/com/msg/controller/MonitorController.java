@@ -1,12 +1,15 @@
 package com.msg.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -14,7 +17,6 @@ import com.msg.service.CpuInfoService;
 import com.msg.service.DiskInfoService;
 import com.msg.service.MemoryInfoService;
 import com.msg.service.OsInfoService;
-import com.msg.service.TestService;
 import com.msg.service.UseMxBean;
 
 
@@ -33,7 +35,16 @@ public class MonitorController {
 	@Autowired private MemoryInfoService memoryInfoService;	//메모리 정보를 가지고 있는 서비스 클래스
 	@Autowired private OsInfoService osInfoService;	//OS정보를 가지고 있는 서비스 클래스
 	
-	@Autowired private TestService testservice;
+	
+	@RequestMapping(value="/login.htm", method=RequestMethod.GET)
+	public String goLogin(){
+		return "login.login";
+	}
+	
+	@RequestMapping("/loginFail.htm")
+	public String goLoginFail(){
+		return "login.loginFail";
+	}
 	
 	/*
 	 * @method name : goMonitorview
@@ -49,6 +60,7 @@ public class MonitorController {
 	 * @description : 실시간 조회 페이지로 이동
 	*/
 	@RequestMapping("/admin.htm")
+	@Secured("ROLE_ADMIN")
 	public String monitorview(){
 		return "admin.monitorview";
 	}
@@ -154,12 +166,5 @@ public class MonitorController {
 		List<Map<String, Object>> lists = diskInfoService.checkDiskDetail();
 		model.addAttribute("disklist", lists);
 		return jsonview;
-	}
-	
-	@RequestMapping("test.htm")
-	public String testMyBatis(){
-		int result = testservice.getBoardCount();
-		System.out.println("controller mapper test : " + result);
-		return "home.main";
 	}
 }
