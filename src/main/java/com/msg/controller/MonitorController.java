@@ -137,6 +137,22 @@ public class MonitorController {
 		return jsonview;
 	}
 	
+	/////////////////////////////////////////수정중//////////////////////////////////////////
+	/*
+	 * @method name : getMemoryInfoAjax
+	 * @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
+	 */
+	@RequestMapping("memoryInfoAjax.htm")
+	public View getMemoryInfoAjax(Model model){
+		List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
+		System.out.println(list);
+		model.addAttribute("allmemory", list);
+		
+		List<MemoryDTO> mList = memoryInfoService.getMemoryInfo();
+		return jsonview;
+	}
+	/////////////////////////////////////////수정중//////////////////////////////////////////
+	
 	/*
 	 * @method name : getOsInfo
 	 * @description : OS 기본정보를 비동기로 출력하기 위해 OsInfoService 클래스를 호출하는 함수
