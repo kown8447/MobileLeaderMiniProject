@@ -1,6 +1,8 @@
 package com.msg.controller;
 
 import java.security.Principal;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -143,12 +146,16 @@ public class MonitorController {
 	 * @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
 	 */
 	@RequestMapping("memoryInfoAjax.htm")
-	public View getMemoryInfoAjax(Model model){
+	public View getMemoryInfoAjax(Model model, @RequestParam(value="startDate") String startDate){
 		List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
 		System.out.println(list);
 		model.addAttribute("allmemory", list);
+		System.out.println(startDate);
+		HashMap<String,String> sDate = new HashMap<String,String>();
+		sDate.put("startDate", startDate);
 		
-		List<MemoryDTO> mList = memoryInfoService.getMemoryInfo();
+		List<MemoryDTO> mList = memoryInfoService.getMemoryInfo(sDate);
+		System.out.println(mList);
 		return jsonview;
 	}
 	/////////////////////////////////////////수정중//////////////////////////////////////////

@@ -55,4 +55,10 @@ public class MemoryInfoService {
 		List<MemoryDTO> list = dao.getAllMemoryInfo();
 		return list;
 	}
+
+	public List<MemoryDTO> getMemoryInfo(HashMap<String,String> sDate) {
+		MemoryDAO dao = sqlsession.getMapper(MemoryDAO.class);
+		List<MemoryDTO> list = dao.getMemoryInfo(sDate);
+		return list;
+	}
 }
