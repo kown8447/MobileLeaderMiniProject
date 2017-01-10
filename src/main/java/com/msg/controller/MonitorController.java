@@ -1,6 +1,7 @@
 package com.msg.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -89,6 +91,7 @@ public class MonitorController {
 		return "cpu.cpuInfo";
 	}
 	
+	
 	/*
 	 * @method name : goMemoryInfo
 	 * @description : memory 정보 조회 페이지로 이동
@@ -114,7 +117,7 @@ public class MonitorController {
 		return "disk.diskInfo";
 	}
 	
-	
+	 
 	/*
 	 * @method name : getCpuInfo
 	 * @description : CPU 사용량을 비동기로 출력하기 위해 CpuInfoService 클래스를 호출하는 함수
@@ -125,6 +128,20 @@ public class MonitorController {
 		model.addAttribute("cpuUsage", cpuUsage);
 		return jsonview;
 	}
+	
+	/*
+	 * @method name : cpu1hour
+	 * @description : cpu 사용량 1시간
+	 */ 
+	@RequestMapping(value="cpuhour.htm") 
+	public View getCpuhour(Model model, @RequestParam(value="searchhour") int searchhour){
+		Map<String, String> cpuhourInfo = new HashMap<String, String>();
+		//cpu1hourInfo.put("", arg1);
+		List<CpuDTO> cList = cpuInfoService.getCpuhour(searchhour);
+		//model.addAttribute("cpuUsage", cpuhourInfo);
+		model.addAttribute("cpuUsage", cList);
+		return jsonview;  
+	}  
 	
 	/*
 	 * @method name : getMemoryInfo
@@ -180,4 +197,6 @@ public class MonitorController {
 		model.addAttribute("disklist", lists);
 		return jsonview;
 	}
+	
+
 }

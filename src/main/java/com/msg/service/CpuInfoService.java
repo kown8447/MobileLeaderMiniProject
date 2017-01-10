@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +81,16 @@ public class CpuInfoService {
 		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);
 		List<CpuDTO> result = dao.getAllCpuInfo();
 		return result;
+	}
+	
+	/*
+	 * @method name : getCpu1hour
+	 * @description : 
+	 * CPU 1시간 이내의 DB에 있는 정보를 가져옴
+	*/
+	public List<CpuDTO> getCpuhour(int searchhour){
+		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);
+		List<CpuDTO> list = dao.getCpuhour(searchhour);
+		return list;
 	}
 }

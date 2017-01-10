@@ -8,6 +8,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into cpu(cpuusage) values(#{cpuusage})
 	</insert>
 	<select id="getAllCpuInfo" resultType="com.msg.dto.CpuDTO">
-		select * from cpu
+		select * from cpu where regdate > (sysdate - 1/24) ORDER BY regdate desc
+	</select>
+	<select id="getCpuhour" parameterType="int" resultType="com.msg.dto.CpuDTO">
+		select * from cpu 
+		where regdate > (sysdate - #{searchhour} /24) 
+		<!-- <choose>
+			<when test="searchhour == 1">
+				where regdate > (sysdate - 1/24) 
+			</when>
+			<when test="searchhour == 3">
+				where regdate > (sysdate - 3/24) 
+			</when>
+		</choose> -->
+		order by regdate desc
 	</select>
 </mapper>
