@@ -151,10 +151,9 @@ public class MonitorController {
 		System.out.println(list);
 		model.addAttribute("allmemory", list);
 		System.out.println(startDate);
-		HashMap<String,String> sDate = new HashMap<String,String>();
-		sDate.put("startDate", startDate);
-		
-		List<MemoryDTO> mList = memoryInfoService.getMemoryInfo(sDate);
+		Map<String, String> as = new HashMap<String, String>();
+		as.put("sDate", startDate);
+		List<MemoryDTO> mList = memoryInfoService.getMemoryInfo(as);
 		System.out.println(mList);
 		return jsonview;
 	}
