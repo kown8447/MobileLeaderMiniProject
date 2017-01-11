@@ -33,7 +33,7 @@ public class DataInsertScheduler {
 		}
 	}
 	
-	//@Scheduled(fixedRate=10000)
+	@Scheduled(fixedRate=300000)
 	public void memoryDataInsert(){
 		System.out.println("memory 삽입 스케쥴러...");
 		MemoryDAO dao = sqlsession.getMapper(MemoryDAO.class);

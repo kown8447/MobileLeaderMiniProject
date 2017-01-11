@@ -1,14 +1,12 @@
 package com.msg.dto;
 
-import java.sql.Date;
-
 public class MemoryDTO {
-	private Date regdate;
+	private String regdate;
 	private long usedmemory;
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	public long getUsedmemory() {

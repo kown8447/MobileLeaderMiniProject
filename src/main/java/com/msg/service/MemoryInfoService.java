@@ -58,7 +58,6 @@ public class MemoryInfoService {
 
 	public List<MemoryDTO> getMemoryInfo(Map<String,String> startDate) {
 		MemoryDAO dao = sqlsession.getMapper(MemoryDAO.class);
-		System.out.println(startDate);
 		List<MemoryDTO> list = dao.getMemoryInfo(startDate);
 		return list;
 	}

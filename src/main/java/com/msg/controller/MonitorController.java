@@ -148,13 +148,15 @@ public class MonitorController {
 	@RequestMapping("memoryInfoAjax.htm")
 	public View getMemoryInfoAjax(Model model, @RequestParam(value="startDate") String startDate){
 		List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
-		System.out.println(list);
+		//System.out.println(list);
 		model.addAttribute("allmemory", list);
 		System.out.println(startDate);
+		List<MemoryDTO> mList = null;
 		Map<String, String> as = new HashMap<String, String>();
 		as.put("sDate", startDate);
-		List<MemoryDTO> mList = memoryInfoService.getMemoryInfo(as);
-		System.out.println(mList);
+		mList = memoryInfoService.getMemoryInfo(as);
+		//System.out.println(mList);
+		model.addAttribute("selected", mList);
 		return jsonview;
 	}
 	/////////////////////////////////////////수정중//////////////////////////////////////////

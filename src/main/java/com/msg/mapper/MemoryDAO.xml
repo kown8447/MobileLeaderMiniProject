@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getMemoryInfo" parameterType="Map" resultType="com.msg.dto.MemoryDTO">
-		select usedmemory 
+		select to_char(regdate, 'yyyy-mm-dd hh24:mi:ss') regdate, usedmemory 
 		from memory
 		<choose>
 			<when test='sDate eq "1"'>
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				where to_char(regdate, 'yyyymmdd hh24:mi:ss') <![CDATA[ >= ]]> to_char(sysdate - 6/24, 'yyyymmdd hh24:mi:ss')
 			</when>
 			<otherwise>
-				where to_char(regdate, 'yyyymmdd hh24:mi:ss') <![CDATA[ >= ]]> to_char(to_date(#{sDate}, 'yyyy-mm-dd'), 'yyyymmdd hh24:mi:ss')
+				where to_char(regdate, 'yyyymmdd') <![CDATA[ = ]]> to_char(to_date(#{sDate}, 'yyyy-mm-dd'), 'yyyymmdd')
 			</otherwise>
 		</choose>
 		
