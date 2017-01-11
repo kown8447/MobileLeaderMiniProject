@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<title>Insert title here</title>
+<script src="https://code.highcharts.com/modules/exporting.js"></script><title>Insert title here</title>
 <script type="text/javascript">
 function fn_cpuonload() {
 	var now = new Date();
@@ -22,7 +22,7 @@ var searchhour;	//검색시간변수
 $(function(){
 	$('#cpusearch').click(function(event){
 		var cpudate = document.getElementById("cpudate").value;
-		searchhour = 24;
+		searchhour = cpudate;
 		alert(cpudate + "조회");
 		var data = {"searchhour" : searchhour}
 		$.ajax({
@@ -32,14 +32,50 @@ $(function(){
 	$('#cpusearch1hour').click(function(event){
 		searchhour = 1;
 		var data = {"searchhour" : searchhour}
-		alert(data);
 		$.ajax({
 			url:"cpuhour.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
-				var a = data.cpuUsage.regdate;
-				alert(a);
+				var regdate;
+				var cpuusage;
+				var cpuArray = new Array();
+				var tbody = document.getElementById("tbodylist");
+				tbody.innerHTML = "";
+				for (var i=0; i<data.cpuUsage.length; i++){
+					regdate = data.cpuUsage[i].regdate;
+					cpuusage = data.cpuUsage[i].cpuusage;
+					cpuArray[i] = cpuusage;
+					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+				}
+				/* cpu Usage Chart 2 START */
+				Highcharts.chart('cpuusagechart', {
+
+			        title: {
+			            text: ''
+			        },
+
+			        xAxis: {
+			            tickInterval: 1,
+			        },
+
+			        yAxis: {
+			            type: 'logarithmic',
+			            minorTickInterval: 0.1,
+			            max: 99
+			        },
+
+			        tooltip: {
+			            headerFormat: '<b>cpu usage</b><br/>',
+			            pointFormat: '{point.y}%'
+			        },
+
+			        series: [{
+			            data: cpuArray,
+			            pointStart: 1
+			        }]
+			    });
+				/* cpu Usage Chart 2 END */
 			}
 		});
 	});
@@ -51,7 +87,45 @@ $(function(){
 			data:data,
 			dataType:"json",
 			success:function(data){
-				alert("성공");
+				var regdate;
+				var cpuusage;
+				var cpuArray = new Array();
+				var tbody = document.getElementById("tbodylist");
+				tbody.innerHTML = "";
+				for (var i=0; i<data.cpuUsage.length; i++){
+					regdate = data.cpuUsage[i].regdate;
+					cpuusage = data.cpuUsage[i].cpuusage;
+					cpuArray[i] = cpuusage;
+					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+				}
+				/* cpu Usage Chart 2 START */
+				Highcharts.chart('cpuusagechart', {
+
+			        title: {
+			            text: ''
+			        },
+
+			        xAxis: {
+			            tickInterval: 1,
+			        },
+
+			        yAxis: {
+			            type: 'logarithmic',
+			            minorTickInterval: 0.1,
+			            max: 99
+			        },
+
+			        tooltip: {
+			            headerFormat: '<b>cpu usage</b><br/>',
+			            pointFormat: '{point.y}%'
+			        },
+
+			        series: [{
+			            data: cpuArray,
+			            pointStart: 1
+			        }]
+			    });
+				/* cpu Usage Chart 2 END */
 			}
 		});
 	});
@@ -63,7 +137,45 @@ $(function(){
 			data:data,
 			dataType:"json",
 			success:function(data){
-				alert("성공");
+				var regdate;
+				var cpuusage;
+				var cpuArray = new Array();
+				var tbody = document.getElementById("tbodylist");
+				tbody.innerHTML = "";
+				for (var i=0; i<data.cpuUsage.length; i++){
+					regdate = data.cpuUsage[i].regdate;
+					cpuusage = data.cpuUsage[i].cpuusage;
+					cpuArray[i] = cpuusage;
+					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+				}
+				/* cpu Usage Chart 2 START */
+				Highcharts.chart('cpuusagechart', {
+
+			        title: {
+			            text: ''
+			        },
+
+			        xAxis: {
+			            tickInterval: 1,
+			        },
+
+			        yAxis: {
+			            type: 'logarithmic',
+			            minorTickInterval: 0.1,
+			            max: 99
+			        },
+
+			        tooltip: {
+			            headerFormat: '<b>cpu usage</b><br/>',
+			            pointFormat: '{point.y}%'
+			        },
+
+			        series: [{
+			            data: cpuArray,
+			            pointStart: 1
+			        }]
+			    });
+				/* cpu Usage Chart 2 END */
 			}
 		});
 	});

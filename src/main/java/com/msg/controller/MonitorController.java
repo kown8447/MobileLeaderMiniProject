@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -67,7 +68,7 @@ public class MonitorController {
 	@Secured("ROLE_ADMIN")
 	public String monitorview(){
 		return "admin.monitorview";
-	}
+	} 
 	
 	/*
 	 * @method name : goOsInfo
@@ -132,15 +133,18 @@ public class MonitorController {
 	/*
 	 * @method name : cpu1hour
 	 * @description : cpu 사용량 1시간
-	 */ 
+	 */  
 	@RequestMapping(value="cpuhour.htm") 
+	@ResponseBody
 	public View getCpuhour(Model model, @RequestParam(value="searchhour") int searchhour){
-		Map<String, String> cpuhourInfo = new HashMap<String, String>();
+		//Map<String, String> cpuhourInfo = new HashMap<String, String>();
 		//cpu1hourInfo.put("", arg1);
 		List<CpuDTO> cList = cpuInfoService.getCpuhour(searchhour);
+		//System.out.println("cpuhourInfo ::::" + cpuhourInfo);
+		System.out.println("cList :::: " + cList);
 		//model.addAttribute("cpuUsage", cpuhourInfo);
 		model.addAttribute("cpuUsage", cList);
-		return jsonview;  
+		return jsonview;
 	}  
 	
 	/*

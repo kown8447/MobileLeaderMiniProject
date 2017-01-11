@@ -12,6 +12,8 @@
     <button type="button" class="btn btn-default btn-xs" id="cpusearch6hour">6시간</button>
     현재시간 <span id="sysdate"></span>
     <br/>
+    <div id="cpuusagechart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    
     <table class="table table-hover" style="width:400px">
       <thead>
         <tr>
@@ -19,7 +21,7 @@
           <th>사용량(%)</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbodylist">
         <c:forEach items="${allcpuinfo}" var="info">
 			<tr>
 				<td>${info.regdate}</td>

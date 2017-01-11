@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,8 +90,10 @@ public class CpuInfoService {
 	 * CPU 1시간 이내의 DB에 있는 정보를 가져옴
 	*/
 	public List<CpuDTO> getCpuhour(int searchhour){
-		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);
-		List<CpuDTO> list = dao.getCpuhour(searchhour);
+		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);	
+		List<CpuDTO> list = dao.getCpuhour(searchhour);	
+		Map<String, String> result = new HashMap<String, String>();
+		CpuDTO dt;
 		return list;
 	}
 }
