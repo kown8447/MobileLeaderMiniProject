@@ -85,15 +85,15 @@ public class CpuInfoService {
 	}
 	
 	/*
-	 * @method name : getCpu1hour
+	 * @method name : getCpuhour
 	 * @description : 
-	 * CPU 1시간 이내의 DB에 있는 정보를 가져옴
+	 * CPU 1시간, 3시간, 6시간의 DB에 있는 정보를 가져옴
 	*/
-	public List<CpuDTO> getCpuhour(int searchhour){
+	public List<CpuDTO> getCpuInfo(HashMap<String, String> cpusearch){
 		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);	
-		List<CpuDTO> list = dao.getCpuhour(searchhour);	
-		Map<String, String> result = new HashMap<String, String>();
-		CpuDTO dt;
+		System.out.println("service [cpusearch] ///" + cpusearch);
+		List<CpuDTO> list = dao.getCpuInfo(cpusearch);
+		System.out.println("service [list] ///" + list);
 		return list;
 	}
 }

@@ -124,39 +124,32 @@ public class MonitorController {
 	 * @description : CPU 사용량을 비동기로 출력하기 위해 CpuInfoService 클래스를 호출하는 함수
 	*/
 	@RequestMapping("cpuAjax.htm")
-	public View getCpuInfo(Model model){
-		double cpuUsage = cpuInfoService.showCPU();
-		model.addAttribute("cpuUsage", cpuUsage);
+	public View getCpuInfo(Model model, @RequestParam(value="searchhour") String searchhour){
+		HashMap<String, String> cpusearch = new HashMap<String, String>();
+		cpusearch.put("searchhour", searchhour);
+		List<CpuDTO> list = cpuInfoService.getCpuInfo(cpusearch);
+		model.addAttribute("cpuUsage", list);
 		return jsonview;
 	}
-	
-	/*
-	 * @method name : cpu1hour
-	 * @description : cpu 사용량 1시간
-	 */  
-	@RequestMapping(value="cpuhour.htm") 
-	@ResponseBody
-	public View getCpuhour(Model model, @RequestParam(value="searchhour") int searchhour){
-		//Map<String, String> cpuhourInfo = new HashMap<String, String>();
-		//cpu1hourInfo.put("", arg1);
-		List<CpuDTO> cList = cpuInfoService.getCpuhour(searchhour);
-		//System.out.println("cpuhourInfo ::::" + cpuhourInfo);
-		System.out.println("cList :::: " + cList);
-		//model.addAttribute("cpuUsage", cpuhourInfo);
-		model.addAttribute("cpuUsage", cList);
-		return jsonview;
-	}  
 	
 	/*
 	 * @method name : getMemoryInfo
 	 * @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
 	*/
-	@RequestMapping("memoryAjax.htm")
-	public View getMemoryInfo(Model model){
-		Map<String, Long> memoryInfo = memoryInfoService.showMemory();
-		model.addAttribute("memoryInfo", memoryInfo);
-		return jsonview;
-	}
+    @RequestMapping("memoryInfoAjax.htm")
+    public View getMemoryInfoAjax(Model model, @RequestParam(value="startDate") String startDate){
+        List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
+        model.addAttribute("allmemory", list);
+        System.out.println(startDate);
+        List<MemoryDTO> mList = null;
+        Map<String, String> as = new HashMap<String, String>();
+        as.put("sDate", startDate);
+        //mList = memoryInfoService.getMemoryInfo(as);
+        //System.out.println(mList);
+        model.addAttribute("selected", mList);
+        return jsonview;
+    }
+
 	
 	/*
 	 * @method name : getOsInfo

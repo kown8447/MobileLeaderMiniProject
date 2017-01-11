@@ -13,7 +13,6 @@
 <script type="text/javascript">
 function fn_cpuonload() {
 	var now = new Date();
-	document.getElementById("cpudate").value = now.toDateString();
 	document.getElementById("sysdate").innerHTML = "<b>" + now.toLocaleDateString() + now.toLocaleTimeString() + "</b>";
 }
 
@@ -22,18 +21,15 @@ var searchhour;	//검색시간변수
 $(function(){
 	$('#cpusearch').click(function(event){
 		var cpudate = document.getElementById("cpudate").value;
+		if (cpudate == "") {
+			alert("검색할 날짜를 입력해주세요");
+			cpudate = new Date();
+			return;
+		}
 		searchhour = cpudate;
-		alert(cpudate + "조회");
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:""
-		});
-	});
-	$('#cpusearch1hour').click(function(event){
-		searchhour = 1;
-		var data = {"searchhour" : searchhour}
-		$.ajax({
-			url:"cpuhour.htm",
+			url:"cpuAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
@@ -48,7 +44,61 @@ $(function(){
 					cpuArray[i] = cpuusage;
 					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
-				/* cpu Usage Chart 2 START */
+				/* cpu Usage Chart START */
+				Highcharts.chart('cpuusagechart', {
+
+			        title: {
+			            text: ''
+			        },
+
+			        xAxis: {
+			            tickInterval: 1,
+			        },
+
+			        yAxis: {
+			            type: 'logarithmic',
+			            minorTickInterval: 0.1,
+			            max: 99,
+                        title: {
+                            text: 'Cpu Usage (%)'
+                        }
+
+			        },
+
+			        tooltip: {
+			            headerFormat: '<b>cpu usage</b><br/>',
+			            pointFormat: '{point.y}%'
+			        },
+
+			        series: [{
+			            data: cpuArray,
+			            pointStart: 1
+			        }]
+			    });
+				/* cpu Usage Chart END */
+			}
+		});
+	});
+	$('#cpusearch1hour').click(function(event){
+		searchhour = 1;
+		var data = {"searchhour" : searchhour}
+		$.ajax({
+			url:"cpuAjax.htm",
+			data:data,
+			dataType:"json",
+			success:function(data){
+				var regdate;
+				var cpuusage;
+				var cpuArray = new Array();
+				var tbody = document.getElementById("tbodylist");
+				tbody.innerHTML = "";
+				for (var i=0; i<data.cpuUsage.length; i++){
+					regdate = data.cpuUsage[i].regdate;
+					cpuusage = data.cpuUsage[i].cpuusage;
+					cpuArray[i] = cpuusage;
+					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+				}
+				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
 
 			        title: {
@@ -75,7 +125,7 @@ $(function(){
 			            pointStart: 1
 			        }]
 			    });
-				/* cpu Usage Chart 2 END */
+				/* cpu Usage Chart END */
 			}
 		});
 	});
@@ -83,7 +133,7 @@ $(function(){
 		searchhour = 3;
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:"cpuhour.htm",
+			url:"cpuAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
@@ -98,7 +148,7 @@ $(function(){
 					cpuArray[i] = cpuusage;
 					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
-				/* cpu Usage Chart 2 START */
+				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
 
 			        title: {
@@ -125,7 +175,7 @@ $(function(){
 			            pointStart: 1
 			        }]
 			    });
-				/* cpu Usage Chart 2 END */
+				/* cpu Usage Chart END */
 			}
 		});
 	});
@@ -133,7 +183,7 @@ $(function(){
 		searchhour = 6;
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:"cpuhour.htm",
+			url:"cpuAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
@@ -148,7 +198,7 @@ $(function(){
 					cpuArray[i] = cpuusage;
 					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
-				/* cpu Usage Chart 2 START */
+				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
 
 			        title: {
@@ -175,7 +225,7 @@ $(function(){
 			            pointStart: 1
 			        }]
 			    });
-				/* cpu Usage Chart 2 END */
+				/* cpu Usage Chart END */
 			}
 		});
 	});
