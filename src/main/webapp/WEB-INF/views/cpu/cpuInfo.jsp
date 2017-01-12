@@ -6,15 +6,16 @@
 	<!-- div id=cpudiv1 start -->
 	<div id="cpudiv1" style="margin: 0 auto">
 		<!-- cpu 정보 검색 할 수 있는 input 및 button -->
-		<b>cpu 정보</b>
-		<hr>
+		<div class="page-header">
+  			<h1><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  CPU 정보</h1>
+		</div>
 		<div class="col-xs-4">
 	    	<input type="date" class="form-control" id="cpudate" style="width:50%;">
 	    	<button type="button" class="btn btn-default" id="cpusearch">
 	    		<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색
 	    	</button>
 	    </div>
-	    <div class="col-xs-4">
+	    <div class="col-xs-4" >
 		    <button type="button" class="btn btn-default" id="cpusearch1hour">
 		    	<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1시간
 			</button>
