@@ -3,12 +3,12 @@ package com.msg.dto;
 import java.sql.Date;
 
 public class CpuDTO {
-	private Date regdate;
+	private String regdate;
 	private int cpuusage;
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	public int getCpuusage() {

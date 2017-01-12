@@ -1,6 +1,7 @@
 package com.msg.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -65,7 +68,7 @@ public class MonitorController {
 	@Secured("ROLE_ADMIN")
 	public String monitorview(){
 		return "admin.monitorview";
-	}
+	} 
 	
 	/*
 	 * @method name : goOsInfo
@@ -88,6 +91,7 @@ public class MonitorController {
 		model.addAttribute("allcpuinfo", allcpuinfo);
 		return "cpu.cpuInfo";
 	}
+	
 	
 	/*
 	 * @method name : goMemoryInfo
@@ -114,15 +118,17 @@ public class MonitorController {
 		return "disk.diskInfo";
 	}
 	
-	
+	 
 	/*
 	 * @method name : getCpuInfo
 	 * @description : CPU 사용량을 비동기로 출력하기 위해 CpuInfoService 클래스를 호출하는 함수
 	*/
 	@RequestMapping("cpuAjax.htm")
-	public View getCpuInfo(Model model){
-		double cpuUsage = cpuInfoService.showCPU();
-		model.addAttribute("cpuUsage", cpuUsage);
+	public View getCpuInfo(Model model, @RequestParam(value="searchhour") String searchhour){
+		HashMap<String, String> cpusearch = new HashMap<String, String>();
+		cpusearch.put("searchhour", searchhour);
+		List<CpuDTO> list = cpuInfoService.getCpuInfo(cpusearch);
+		model.addAttribute("cpuUsage", list);
 		return jsonview;
 	}
 	
@@ -130,12 +136,20 @@ public class MonitorController {
 	 * @method name : getMemoryInfo
 	 * @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
 	*/
-	@RequestMapping("memoryAjax.htm")
-	public View getMemoryInfo(Model model){
-		Map<String, Long> memoryInfo = memoryInfoService.showMemory();
-		model.addAttribute("memoryInfo", memoryInfo);
-		return jsonview;
-	}
+    @RequestMapping("memoryInfoAjax.htm")
+    public View getMemoryInfoAjax(Model model, @RequestParam(value="startDate") String startDate){
+        List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
+        model.addAttribute("allmemory", list);
+        System.out.println(startDate);
+        List<MemoryDTO> mList = null;
+        Map<String, String> as = new HashMap<String, String>();
+        as.put("sDate", startDate);
+        //mList = memoryInfoService.getMemoryInfo(as);
+        //System.out.println(mList);
+        model.addAttribute("selected", mList);
+        return jsonview;
+    }
+
 	
 	/*
 	 * @method name : getOsInfo
@@ -180,4 +194,6 @@ public class MonitorController {
 		model.addAttribute("disklist", lists);
 		return jsonview;
 	}
+	
+
 }
