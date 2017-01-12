@@ -183,7 +183,7 @@ $(function(){
 		searchhour = 6;
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:"cpuAjax.htm",
+			url:"CpuInfoAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
