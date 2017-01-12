@@ -9,5 +9,5 @@ import com.msg.dto.CpuDTO;
 public interface CpuDAO {
 	public int cpuInfoInsert(CpuDTO dto);
 	public List<CpuDTO> getAllCpuInfo();
-	public List<CpuDTO> getCpuInfo(HashMap<String, String> cpusearch);
+	public List<CpuDTO> getCpuInfoAjax(HashMap<String, String> cpusearch);
 }
