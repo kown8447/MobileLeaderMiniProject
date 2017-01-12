@@ -19,11 +19,7 @@ public class DataInsertScheduler {
 	@Autowired private CpuInfoService cpuservice;
 	@Autowired private MemoryInfoService memoryservice;
 	
-<<<<<<< HEAD
 	@Scheduled(fixedRate=5000000)
-=======
-	@Scheduled(fixedRate=300000)
->>>>>>> c9d862fdd360747eb4d4d23940f95035d5ae9591
 	public void cpuDataInsert(){
 		System.out.println("cpu 삽입 스케쥴러...");
 		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);
@@ -37,11 +33,7 @@ public class DataInsertScheduler {
 		}
 	}
 	
-<<<<<<< HEAD
 	@Scheduled(fixedRate=5000000)
-=======
-	@Scheduled(fixedRate=300000)
->>>>>>> c9d862fdd360747eb4d4d23940f95035d5ae9591
 	public void memoryDataInsert(){
 		System.out.println("memory 삽입 스케쥴러...");
 		MemoryDAO dao = sqlsession.getMapper(MemoryDAO.class);
