@@ -10,4 +10,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getAllMemoryInfo" resultType="com.msg.dto.MemoryDTO">
 		select * from memory
 	</select>
+	
+	<select id="getMemoryInfo" parameterType="Map" resultType="com.msg.dto.MemoryDTO">
+		select to_char(regdate, 'yyyy-mm-dd hh24:mi:ss') regdate, usedmemory 
+		from memory
+		<choose>
+			<when test='sDate eq "1"'>
+				where to_char(regdate, 'yyyymmdd hh24:mi:ss') <![CDATA[ >= ]]> to_char(sysdate - 1/24, 'yyyymmdd hh24:mi:ss') 
+			</when>
+			<when test='sDate eq "3"'>
+				where to_char(regdate, 'yyyymmdd hh24:mi:ss') <![CDATA[ >= ]]> to_char(sysdate - 3/24, 'yyyymmdd hh24:mi:ss')
+			</when>
+			<when test='sDate eq "6"'>
+				where to_char(regdate, 'yyyymmdd hh24:mi:ss') <![CDATA[ >= ]]> to_char(sysdate - 6/24, 'yyyymmdd hh24:mi:ss')
+			</when>
+			<otherwise>
+				where to_char(regdate, 'yyyymmdd') <![CDATA[ = ]]> to_char(to_date(#{sDate}, 'yyyy-mm-dd'), 'yyyymmdd')
+			</otherwise>
+		</choose>
+		order by regdate asc
+	</select>
 </mapper>

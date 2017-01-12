@@ -1,6 +1,5 @@
 package com.msg.controller;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import com.msg.dto.CpuDTO;
@@ -22,7 +19,6 @@ import com.msg.service.CpuInfoService;
 import com.msg.service.DiskInfoService;
 import com.msg.service.MemoryInfoService;
 import com.msg.service.OsInfoService;
-import com.msg.service.UseMxBean;
 
 
 /*
@@ -154,6 +150,22 @@ public class MonitorController {
 	return jsonview;
 	}
 
+	
+	/*
+	 * @method name : getMemoryInfoAjax
+	 * @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
+	 */
+	@RequestMapping("memoryInfoAjax.htm")
+	public View getMemoryInfoAjax(Model model, @RequestParam(value="startDate") String startDate){
+		List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
+		model.addAttribute("allmemory", list);
+		
+		List<MemoryDTO> mList = null;
+		Map<String, String> as = new HashMap<String, String>();
+		mList = memoryInfoService.getMemoryInfo(as);
+		model.addAttribute("selected", mList);
+		return jsonview;
+	}
 	
 	/*
 	 * @method name : getOsInfo
