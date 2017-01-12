@@ -28,6 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				where to_char(regdate, 'yyyymmdd') <![CDATA[ = ]]> to_char(to_date(#{sDate}, 'yyyy-mm-dd'), 'yyyymmdd')
 			</otherwise>
 		</choose>
-		
+		order by regdate asc
 	</select>
 </mapper>
