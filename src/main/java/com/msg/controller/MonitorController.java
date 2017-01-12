@@ -162,6 +162,7 @@ public class MonitorController {
 		
 		List<MemoryDTO> mList = null;
 		Map<String, String> as = new HashMap<String, String>();
+		as.put("sDate", startDate);
 		mList = memoryInfoService.getMemoryInfo(as);
 		model.addAttribute("selected", mList);
 		return jsonview;
