@@ -89,10 +89,10 @@ public class CpuInfoService {
 	 * @description : 
 	 * CPU 1시간, 3시간, 6시간의 DB에 있는 정보를 가져옴
 	*/
-	public List<CpuDTO> getCpuInfo(HashMap<String, String> cpusearch){
+	public List<CpuDTO> getCpuInfoAjax(HashMap<String, String> cpusearch){
 		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);	
 		System.out.println("service [cpusearch] ///" + cpusearch);
-		List<CpuDTO> list = dao.getCpuInfo(cpusearch);
+		List<CpuDTO> list = dao.getCpuInfoAjax(cpusearch);
 		System.out.println("service [list] ///" + list);
 		return list;
 	}

@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getAllCpuInfo" resultType="com.msg.dto.CpuDTO">
 		select * from cpu where regdate > (sysdate - 1/24) order by regdate desc
 	</select>
-	<select id="getCpuInfo" parameterType="Map" resultType="com.msg.dto.CpuDTO">
+	<select id="getCpuInfoAjax" parameterType="Map" resultType="com.msg.dto.CpuDTO">
 		select * from cpu 
 <!-- 		where regdate > (sysdate - #{searchhour} /24)  -->
         <choose>

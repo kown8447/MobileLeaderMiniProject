@@ -120,35 +120,40 @@ public class MonitorController {
 	
 	 
 	/*
-	 * @method name : getCpuInfo
+	 * @method name : getCpuInfoAjax
 	 * @description : CPU 사용량을 비동기로 출력하기 위해 CpuInfoService 클래스를 호출하는 함수
 	*/
-	@RequestMapping("cpuAjax.htm")
-	public View getCpuInfo(Model model, @RequestParam(value="searchhour") String searchhour){
+	@RequestMapping("CpuInfoAjax.htm")
+	public View getCpuInfoAjax(Model model, @RequestParam(value="searchhour") String searchhour){
 		HashMap<String, String> cpusearch = new HashMap<String, String>();
 		cpusearch.put("searchhour", searchhour);
-		List<CpuDTO> list = cpuInfoService.getCpuInfo(cpusearch);
+		List<CpuDTO> list = cpuInfoService.getCpuInfoAjax(cpusearch);
 		model.addAttribute("cpuUsage", list);
 		return jsonview;
 	}
 	
-	/*
-	 * @method name : getMemoryInfo
-	 * @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
+
+	 /*
+	* @method name : getCpuInfo
+	* @description : CPU 사용량을 비동기로 출력하기 위해 CpuInfoService 클래스를 호출하는 함수
 	*/
-    @RequestMapping("memoryInfoAjax.htm")
-    public View getMemoryInfoAjax(Model model, @RequestParam(value="startDate") String startDate){
-        List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
-        model.addAttribute("allmemory", list);
-        System.out.println(startDate);
-        List<MemoryDTO> mList = null;
-        Map<String, String> as = new HashMap<String, String>();
-        as.put("sDate", startDate);
-        //mList = memoryInfoService.getMemoryInfo(as);
-        //System.out.println(mList);
-        model.addAttribute("selected", mList);
-        return jsonview;
-    }
+	@RequestMapping("cpuAjax.htm")
+	public View getCpuInfo(Model model){
+	double cpuUsage = cpuInfoService.showCPU();
+	model.addAttribute("cpuUsage", cpuUsage);
+	return jsonview;
+	}
+
+	/*
+	* @method name : getMemoryInfo
+	* @description : 메모리 사용량을 비동기로 출력하기 위해 MemoryInfoService 클래스를 호출하는 함수
+	*/
+	@RequestMapping("memoryAjax.htm")
+	public View getMemoryInfo(Model model){
+	Map<String, Long> memoryInfo = memoryInfoService.showMemory();
+	model.addAttribute("memoryInfo", memoryInfo);
+	return jsonview;
+	}
 
 	
 	/*

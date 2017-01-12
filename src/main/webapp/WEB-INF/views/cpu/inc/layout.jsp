@@ -29,7 +29,7 @@ $(function(){
 		searchhour = cpudate;
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:"cpuAjax.htm",
+			url:"CpuInfoAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
@@ -83,7 +83,7 @@ $(function(){
 		searchhour = 1;
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:"cpuAjax.htm",
+			url:"CpuInfoAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
@@ -133,7 +133,7 @@ $(function(){
 		searchhour = 3;
 		var data = {"searchhour" : searchhour}
 		$.ajax({
-			url:"cpuAjax.htm",
+			url:"CpuInfoAjax.htm",
 			data:data,
 			dataType:"json",
 			success:function(data){
