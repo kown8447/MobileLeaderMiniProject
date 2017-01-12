@@ -38,11 +38,15 @@ $(function(){
 				var cpuArray = new Array();
 				var tbody = document.getElementById("tbodylist");
 				tbody.innerHTML = "";
+				if (data.cpuUsage.length == 0) {
+					alert("해당 날짜에 데이터가 존재하지 않습니다");
+					return;
+				}
 				for (var i=0; i<data.cpuUsage.length; i++){
 					regdate = data.cpuUsage[i].regdate;
 					cpuusage = data.cpuUsage[i].cpuusage;
 					cpuArray[i] = cpuusage;
-					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+					tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
 				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
@@ -96,7 +100,7 @@ $(function(){
 					regdate = data.cpuUsage[i].regdate;
 					cpuusage = data.cpuUsage[i].cpuusage;
 					cpuArray[i] = cpuusage;
-					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+					tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
 				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
@@ -146,7 +150,7 @@ $(function(){
 					regdate = data.cpuUsage[i].regdate;
 					cpuusage = data.cpuUsage[i].cpuusage;
 					cpuArray[i] = cpuusage;
-					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+					tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
 				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
@@ -196,7 +200,7 @@ $(function(){
 					regdate = data.cpuUsage[i].regdate;
 					cpuusage = data.cpuUsage[i].cpuusage;
 					cpuArray[i] = cpuusage;
-					tbody.innerHTML += "<tr><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
+					tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
 				/* cpu Usage Chart START */
 				Highcharts.chart('cpuusagechart', {
