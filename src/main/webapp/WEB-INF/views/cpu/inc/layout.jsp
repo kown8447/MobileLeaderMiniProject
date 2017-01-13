@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script><title>Insert title here</title>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<title>Insert title here</title>
 <script type="text/javascript">
 function fn_cpuonload() {
 	var now = new Date();
@@ -19,6 +20,10 @@ function fn_cpuonload() {
 var searchhour;	//검색시간변수
 
 $(function(){
+	$('.cpusearch').click(function(event){
+		
+	});
+	
 	$('#cpusearch').click(function(event){
 		var cpudate = document.getElementById("cpudate").value;
 		if (cpudate == "") {
@@ -35,7 +40,10 @@ $(function(){
 			success:function(data){
 				var regdate;
 				var cpuusage;
+				var length = data.cpuUsage.length;
 				var cpuArray = new Array();
+				var date = new Array();
+				var time = new Array();
 				var tbody = document.getElementById("tbodylist");
 				tbody.innerHTML = "";
 				if (data.cpuUsage.length == 0) {
@@ -45,14 +53,68 @@ $(function(){
 				for (var i=0; i<data.cpuUsage.length; i++){
 					regdate = data.cpuUsage[i].regdate;
 					cpuusage = data.cpuUsage[i].cpuusage;
+					date[i] = regdate.substring(0, 10);
+					time[i] = regdate.substring(11, 16);
 					cpuArray[i] = cpuusage;
 					tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + regdate + "</td><td>" + cpuusage + "</td></tr>";
 				}
-				/* cpu Usage Chart START */
+				/* cpu usage chart start */
 				Highcharts.chart('cpuusagechart', {
-
+			        chart: {
+			            type: 'area'
+			        },
 			        title: {
-			            text: ''
+			            text: date[0] + ' CPU 사용량'
+			        },
+			        xAxis: {
+			        	labels: {
+				            step : Math.ceil(length/12)
+			            },
+			            categories: time
+			        },
+			        yAxis: {
+			            title: {
+			                text: 'CPU 사용량 (%)'
+			            } ,
+			            labels: {
+			                formatter: function () {
+			                    return this.value + "%";
+			                }
+			            }
+			        },
+			        tooltip: {
+			            pointFormat: '<b>{point.y:,.0f}% ({point.x})</b>'
+			        },
+			        plotOptions: {
+			            area: {
+			                pointStart: 1,
+			                marker: {
+			                    enabled: false,
+			                    symbol: 'circle',
+			                    radius: 2,
+			                    states: {
+			                        hover: {
+			                            enabled: true
+			                        }
+			                    }
+			                }
+			            }
+			        },
+			        series: [{
+			            name: 'CPU USAGE',
+			            data: cpuArray	//받아온 data값 넘김
+			        }]
+			    });
+				/* cpu usage chart end */
+				
+				
+				/* cpu Usage Chart START */
+				/* Highcharts.chart('cpuusagechart', {
+					chart: {
+						
+					},
+			        title: {
+			            text: '기간별 CPU 사용량'
 			        },
 
 			        xAxis: {
@@ -60,13 +122,11 @@ $(function(){
 			        },
 
 			        yAxis: {
-			            type: 'logarithmic',
+			        	type: 'logarithmic',
 			            minorTickInterval: 0.1,
-			            max: 99,
-                        title: {
-                            text: 'Cpu Usage (%)'
-                        }
-
+			            title: {
+			            	text: 'Cpu Usage (%)'
+			            }
 			        },
 
 			        tooltip: {
@@ -78,7 +138,7 @@ $(function(){
 			            data: cpuArray,
 			            pointStart: 1
 			        }]
-			    });
+			    }); */
 				/* cpu Usage Chart END */
 			}
 		});

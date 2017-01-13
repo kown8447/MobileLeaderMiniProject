@@ -120,7 +120,7 @@ var startDate = 0;
 						                dataLabels: {
 						                    enabled: true,
 						                    style : {
-						                    	'fontSize' : '12px', 
+						                    	'fontSize' : '8px', 
 						                    	'fontWeight' : 'bold'
 						                    },
 						                    format : '{point.y:.0f}'
