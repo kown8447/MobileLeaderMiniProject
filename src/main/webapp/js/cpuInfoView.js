@@ -78,7 +78,6 @@ $(function(){
 			        },
 			        plotOptions: {
 			            area: {
-			                pointStart: 1,
 			                marker: {
 			                    enabled: false,
 			                    symbol: 'circle',

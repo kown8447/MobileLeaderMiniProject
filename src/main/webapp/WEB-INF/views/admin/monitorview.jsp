@@ -33,12 +33,12 @@
 	<div class="page-header">
 		<h1><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  실시간 정보</h1>
 	</div>
-	<div style="width:100%; marin:0 auto;">
+	<div style="width:100%; height:70%; marin:0 auto;">
 		<div class="row">
-			<div class="col-md-6">
 			<!-------------------------------------------------------------------------- 
 							OS 정보를 Table 형태로 보여주는 부분
 			 ---------------------------------------------------------------------------->
+			<div class="col-md-4" style="width: 24%">
 				<table class="table table-striped table-condensed table-hover" style="width: 80%; margin-left: 3%; margin-top: 7%">
 					<tr><th colspan="2" style="text-align: center">OS 정보</td></tr>
 					<tr><td style="width: 50%">OS name</td><td id="os1" style="text-align: center"></td></tr>
@@ -51,59 +51,59 @@
 					<tr><td style="width: 50%">CommittedVirtualMemorySize</td><td id="os8" style="text-align: center"></td></tr>
 				</table>
 			</div>
-			<!-------------------------------------------------------------------------- 
-							DISK 용량을 텍스트 형태로 보여주는 부분
-			 ---------------------------------------------------------------------------->
-			<div class="col-md-2" style="margin-top: 10%">
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="exampleInputName2">전체 공간</label> 
-						<span id="total"></span>
-					</div>
-				</form>
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="exampleInputName2" style="color:#AE758A">사용 공간</label> 
-						<span id="use"></span>
-					</div>
-				</form>
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="exampleInputName2" style="color:#AACCE2">사용가능 공간</label> 
-						<span id="usable"></span>
-					</div>
-				</form>
-				<input type="button" id="checkDiskDetail" class="btn btn-default" value="파티션별 용량 확인"/>
-			</div>
-			<!-------------------------------------------------------------------------- 
+			<div class="col-md-4" style="width: 24%">
+				<!-------------------------------------------------------------------------- 
+								DISK 용량을 텍스트 형태로 보여주는 부분
+				 ---------------------------------------------------------------------------->
+				<div class="row" style="margin-top: 10%">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="exampleInputName2">전체 공간</label> 
+							<span id="total"></span>
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="exampleInputName2" style="color:#AE758A">사용 공간</label> 
+							<span id="use"></span>
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="exampleInputName2" style="color:#AACCE2">사용가능 공간</label> 
+							<span id="usable"></span>
+						</div>
+					</form>
+					<input type="button" id="checkDiskDetail" class="btn btn-default" value="파티션별 용량 확인"/>
+				</div>
+				<!-------------------------------------------------------------------------- 
 							DISK 용량을 Chart 형태로 보여주는 부분
-			 ---------------------------------------------------------------------------->
-			<div class="col-md-4">
-				<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+			 	---------------------------------------------------------------------------->
+				<div class="row">
+					<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+				</div>
 			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-6" style="float:left;">
-			<!-------------------------------------------------------------------------- 
+			<div class="col-md-4" style="width: 24%">
+				<!-------------------------------------------------------------------------- 
 							MEMORY 사용량을 Percentage로 보여주는 부분
-			 ---------------------------------------------------------------------------->
-				<div class="row" style="margin-left: 10%">
-					<div id="usedMemoryByGB" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:5%;"></div>
-					<div id="memoryChart" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left; "></div>
+			 	---------------------------------------------------------------------------->
+				<div class="row" style="height:280px; margin-left: 10%">
+					<div id="usedMemoryByGB" style="height:15%; position : relative; margin-top:5%;"></div>
+					<div id="memoryChart" style="height:85%; height:50%; margin: 0 auto;"></div>
 				</div>
-			<!-------------------------------------------------------------------------- 
+				<!-------------------------------------------------------------------------- 
 							MEMORY 사용량을 그래프 형태로 보여주는 부분
-			 ---------------------------------------------------------------------------->	
-				<div class="row" style="margin-left: 10%">
-					<div id="usedMemory" style="max-width : 150px; min-width: 140px; position : relative; float:left; margin-top:10%;"></div>
-					<div id="memoryContainer" style="max-width: 500px; min-width: 410px; height: 250px; margin: 0 auto; float:left;"></div>
+				---------------------------------------------------------------------------->	
+				<div class="row" style="height:280px; margin-left: 10%">
+					<div id="usedMemory" style="height:15%; position : relative; margin-top:10%;"></div>
+					<div id="memoryContainer" style="height:85%; margin: 0 auto;"></div>
 				</div>
 			</div>
-			<div class="col-md-6" style="marin: 0 auto">
-			<!-------------------------------------------------------------------------- 
+			<div class="col-md-4" style="width: 24%">
+				<!-------------------------------------------------------------------------- 
 							CPU 사용량을 텍스트 형식으로 보여주는 부분
-			 ---------------------------------------------------------------------------->
-				<form class="form-inline" style="text-align: center; margin-top: 5%">
+			 	---------------------------------------------------------------------------->
+				<form class="form-inline" style="text-align: center; height:100px; margin-top: 5%">
 					<div class="form-group">
 						<label for="exampleInputName2">cpu 사용량 :</label> 
 						<span id="cpuUsage"></span>
@@ -114,65 +114,65 @@
 				</form>
 				<!-------------------------------------------------------------------------- 
 							CPU 사용량을 Chart 형태로 보여주는 부분
-			 ---------------------------------------------------------------------------->
-	   			<div class="row" id="cpuusagechart1" style="width: 450px; height: 200px; float: left; margin: 0 auto;"></div>
-				<div class="row" id="cpuusagechart2" style="width: 450px; height: 200px; float: left; margin: 0 auto;"></div>
+			 	---------------------------------------------------------------------------->
+				<div class="row" id="cpuusagechart1" style="width:300px; height:180px; margin: 0 auto;"></div>
+				<div class="row" id="cpuusagechart2" style="height:300px; margin: 0 auto;"></div>
 			</div>
-		</div>
-	
-		<!-------------------------------------------------------------------------- 
+			
+			<!-------------------------------------------------------------------------- 
 							현재 실행중인 프로세스 정보를 출력하는 Modal 부분
 			 ---------------------------------------------------------------------------->
-		<div class="modal fade" id="layerpop">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content modal-lg">
-					<!-- header -->
-					<div class="modal-header">
-						<!-- 닫기(x) 버튼 -->
-						<button type="button" class="close" data-dismiss="modal">×</button>
-						<!-- header title -->
-						<h4 class="modal-title">실행중인 프로세스 목록</h4>
-					</div>
-					<!-- body -->
-					<div class="modal-body" id="modalBody">
-						<table id="resultTable" class="table table-bordered">
-							<tr>
-								<th>Proccess Name</th><th>PID</th><th>Session Name</th><th>Memory Usage</th>
-							</tr>
-						</table>
-					</div>
-					<!-- Footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<div class="modal fade" id="layerpop">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content modal-lg">
+						<!-- header -->
+						<div class="modal-header">
+							<!-- 닫기(x) 버튼 -->
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<!-- header title -->
+							<h4 class="modal-title">실행중인 프로세스 목록</h4>
+						</div>
+						<!-- body -->
+						<div class="modal-body" id="modalBody">
+							<table id="resultTable" class="table table-bordered">
+								<tr>
+									<th>Proccess Name</th><th>PID</th><th>Session Name</th><th>Memory Usage</th>
+								</tr>
+							</table>
+						</div>
+							<!-- Footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	
-		<!-------------------------------------------------------------------------- 
+		
+			<!-------------------------------------------------------------------------- 
 							파티션별 DISK 용량을 출력하는 Modal 부분
 			 ---------------------------------------------------------------------------->
-		<div class="modal fade" id="diskDetail">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content modal-lg">
-					<!-- header -->
-					<div class="modal-header">
-						<!-- 닫기(x) 버튼 -->
-						<button type="button" class="close" data-dismiss="modal">×</button>
-						<!-- header title -->
-						<h4 class="modal-title">파티션별 디스트 용량</h4>
-					</div>
-					<!-- body -->
-					<div class="modal-body" id="modalBody">
-						<table id="resultDiskDetail" class="table table-bordered">
-							<tr>
-								<th>Disk Name</th><th>Total Size(GB)</th><th>Usable Size(GB)</th><th>Used Size(GB)</th>
-							</tr>
-						</table>
-					</div>
-					<!-- Footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<div class="modal fade" id="diskDetail">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content modal-lg">
+						<!-- header -->
+						<div class="modal-header">
+							<!-- 닫기(x) 버튼 -->
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<!-- header title -->
+							<h4 class="modal-title">파티션별 디스트 용량</h4>
+						</div>
+						<!-- body -->
+						<div class="modal-body" id="modalBody">
+							<table id="resultDiskDetail" class="table table-bordered">
+								<tr>
+									<th>Disk Name</th><th>Total Size(GB)</th><th>Usable Size(GB)</th><th>Used Size(GB)</th>
+								</tr>
+							</table>
+						</div>
+						<!-- Footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						</div>
 					</div>
 				</div>
 			</div>
