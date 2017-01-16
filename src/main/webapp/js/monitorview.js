@@ -189,10 +189,10 @@ $(function(){
 						var totalMemory = data.memoryInfo.totalMemory;
 						var freeMemory = data.memoryInfo.freeMemory;
 						var usedMemory = data.memoryInfo.usedMemory;
-						$('#usedMemory').html("<font color='#AE758A'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
-						$('#usedMemoryByGB').html("<font color='#AE758A'><b>실제 메모리 : </b></font><br>" + totalMemory + "MB<br>"
-								+ "<font color='#A8E3A8'><b>사용 가능한 메모리 : </b></font><br>" + freeMemory + "MB<br>"
-								+ "<font color='#AACCE2'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
+						$('#usedMemory').html("<font color='#AE758A'><b>사용중인 메모리 : </b></font>" + usedMemory + "MB");
+						$('#usedMemoryByGB').html("<font color='#AE758A'><b>실제 메모리 : </b></font>" + totalMemory + "MB<br/>"
+								+ "<font color='#A8E3A8'><b>사용 가능한 메모리 : </b></font>" + freeMemory + "MB<br/>"
+								+ "<font color='#AACCE2'><b>사용중인 메모리 : </b></font>" + usedMemory + "MB");
 						
 						for(var i=0; i<9; i++){
 							memoryArray[i] = memoryArray[i+1];

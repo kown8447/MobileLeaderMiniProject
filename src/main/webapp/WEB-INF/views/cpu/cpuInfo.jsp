@@ -9,27 +9,26 @@
 		<div class="page-header">
   			<h1><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  CPU 정보</h1>
 		</div>
-	    	<form class="form-inline">
-				<div class="form-group">
-		    		<input type="date" class="form-control" id="cpudate">
-		    		<button type="button" class="btn btn-default" id="cpusearch">
-		    			<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색
-		    		</button>
-	    		</div>
-	    		<div>
-	    			<button type="button" class="btn btn-default" id="cpusearch1hour">
-					<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1시간
-					</button>
-					<button type="button" class="btn btn-default" id="cpusearch3hour">
-					<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 3시간
-		    		</button>
-		    		<button type="button" class="btn btn-default" id="cpusearch6hour">
-		    		<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 6시간
-		    		</button>
-	    		</div>
-	    	</form>
-  		</div>
-	</div>
+	    <form class="form-inline">
+			<div class="form-group">
+		    	<input type="date" class="form-control" id="cpudate">
+		    	<button type="button" class="btn btn-default" id="cpusearch">
+		    		<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색
+		    	</button>
+	    	</div>
+	   		<div>
+	   			<button type="button" class="btn btn-default" id="cpusearch1hour">
+				<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1시간
+				</button>
+				<button type="button" class="btn btn-default" id="cpusearch3hour">
+				<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 3시간
+	    		</button>
+	    		<button type="button" class="btn btn-default" id="cpusearch6hour">
+	    		<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 6시간
+	    		</button>
+    		</div>
+	    </form>
+  	</div>
 	<!-- div id=cpudiv1 end -->
 	<!-- div id=cpudiv2 start -->
 	<div id="cpudiv2" style="margin: 0 auto">
@@ -39,18 +38,12 @@
 		    <table id="cputable" class="table table-hover" style="text-align:center;">
 		      <thead>
 		        <tr style="position:relative;top:expression(this.offsetParent.scrollTop);">
-		        	<th>번호</th>
-					<th>날짜</th>
-					<th>사용량(%)</th>
+		        	<th style="text-align:center;">번호</th>
+					<th style="text-align:center;">날짜</th>
+					<th style="text-align:center;">사용량(%)</th>
 		        </tr>
 		      </thead>
 		      <tbody id="tbodylist" style="text-align:center; width:100%; height: 350px;">
-<%-- 		        <c:forEach items="${allcpuinfo}" var="info">
-					<tr>
-						<td>${info.regdate}</td>
-						<td>${info.cpuusage}</td>
-					</tr>
-				</c:forEach> --%>
 		      </tbody>
 		    </table>
 	    </div>

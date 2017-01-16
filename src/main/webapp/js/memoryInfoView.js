@@ -33,6 +33,12 @@ var startDate = 0;
 						data:allData,
 						dataType:"json",
 						success:function(data){
+							if(data.selected.length == 0){
+								alert("해당 날짜에 데이터가 존재하지 않습니다.");
+								startDate = 0;
+								$('#hour24').val("");
+								return;
+							}
 							/*--------- 테이블 관리 ---------*/
 							$('#memorytable').empty();
 							$('#memorytable').append("<thead><tr style='position:relative;top:expression(this.offsetParent.scrollTop);'><th style='text-align:center;'>번호</th><th style='text-align:center;'>날짜</th><th style='text-align:center;'>사용량(MB)</th></tr></thead><tbody id='tbodylist' style='text-align:center; width:100%; height: 350px;'>");
@@ -45,10 +51,7 @@ var startDate = 0;
 							/*--------- 테이블 관리 ---------*/
 							
 							/*--------- 차트 관리 ---------*/
-							if(data.selected.length == 0){
-								alert("해당 날짜에 데이터가 존재하지 않습니다.");
-								return;
-							}
+							
 							var memoryArray = new Array();
 							var dateArray = new Array();
 							var regdate = new Array();
