@@ -44,7 +44,7 @@ var startDate = 0;
 								$('#memorytable').append("<tr><td>"+(i+1)+"</td><td>"+data.selected[i].regdate+"</td><td>"+data.selected[i].usedmemory+"</td></tr></tbody>");
 							}
 							startDate = 0;
-							$('#hour24').val(0);
+							$('#hour24').val("");
 							/*--------- 테이블 관리 ---------*/
 							
 							/*--------- 차트 관리 ---------*/
@@ -78,8 +78,6 @@ var startDate = 0;
 								seconds[i] = time[i][2].split('.')[0];
 								utcdate[i] = hour[i] + ":" + minute[i] + ":" + seconds[i];  
 							}
-							console.log(dateArray);
-							console.log(memoryArray);
 							
 							//Highchart
 							Highcharts.chart('memorychart', {

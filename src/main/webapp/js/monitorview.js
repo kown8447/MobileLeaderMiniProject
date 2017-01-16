@@ -398,7 +398,6 @@ $(function(){
 				url:"checkDiskDetail.htm",
 				dataType:"json",
 				success:function(data){
-					console.log(data.disklist);
 					var content = "<tr><th>Disk Name</th><th>Total Size(GB)</th><th>Usable Size(GB)</th><th>Used Size(GB)</th></tr>";
 					$.each(data.disklist,function(key,value) {
 						content += '<tr><td>'+value.name+'</td><td>'+value.total+'</td><td>'+value.usable+'</td><td>'+value.used+'</td></tr>';

@@ -21,7 +21,6 @@ public class DataInsertScheduler {
 	
 	@Scheduled(fixedRate=300000)
 	public void cpuDataInsert(){
-		System.out.println("cpu 삽입 스케쥴러...");
 		CpuDAO dao = sqlsession.getMapper(CpuDAO.class);
 		CpuDTO dto = new CpuDTO();
 		double cpuusage = cpuservice.showCPU();
@@ -35,7 +34,6 @@ public class DataInsertScheduler {
 	
 	@Scheduled(fixedRate=300000)
 	public void memoryDataInsert(){
-		System.out.println("memory 삽입 스케쥴러...");
 		MemoryDAO dao = sqlsession.getMapper(MemoryDAO.class);
 		MemoryDTO dto = new MemoryDTO();
 		Map<String, Long> memorydata = memoryservice.showMemory();

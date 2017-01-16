@@ -140,23 +140,12 @@ public class UseMxBean {
 	private void showClassLoading() {
 		ClassLoadingMXBean classbean = (ClassLoadingMXBean) ManagementFactory.getClassLoadingMXBean();
 
-		System.out.println("TotalLoadedClassCount: " + classbean.getTotalLoadedClassCount());
-		System.out.println("LoadedClassCount: " + classbean.getLoadedClassCount());
-		System.out.println("UnloadedClassCount: " + classbean.getUnloadedClassCount());
-
 	}
 
 	private void showThreadBean() {
 		ThreadMXBean tbean = (ThreadMXBean) ManagementFactory.getThreadMXBean();
 
 		long[] ids = tbean.getAllThreadIds();
-
-		System.out.println("Thread Count: " + tbean.getThreadCount());
-
-		for (long id : ids) {
-			System.out.println("Thread CPU Time(" + id + ")" + tbean.getThreadCpuTime(id));
-			System.out.println("Thread User Time(" + id + ")" + tbean.getThreadCpuTime(id));
-		}
 
 	}
 
