@@ -139,14 +139,11 @@ public class UseMxBean {
 
 	private void showClassLoading() {
 		ClassLoadingMXBean classbean = (ClassLoadingMXBean) ManagementFactory.getClassLoadingMXBean();
-
 	}
 
 	private void showThreadBean() {
 		ThreadMXBean tbean = (ThreadMXBean) ManagementFactory.getThreadMXBean();
-
 		long[] ids = tbean.getAllThreadIds();
-
 	}
 
 	/* OS 정보 */

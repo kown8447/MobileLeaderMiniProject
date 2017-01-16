@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>리소스 모니터링</title>
 </head>
-<body>
+<body style="background:#f8f8f8;">
 	<tiles:insertAttribute name="header"/>
 	<tiles:insertAttribute name="content"/>
 </body>

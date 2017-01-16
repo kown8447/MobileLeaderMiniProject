@@ -1,9 +1,6 @@
 var startDate = 0; 
 	
 	$(function(){
-		var now = new Date();
-		document.getElementById("sysdate").innerHTML = "<b>" + now.toLocaleDateString() + now.toLocaleTimeString() + "</b>";
-		
 		$('#hour').click(function(event){
 			startDate = 1;
 			$('#search').click();
@@ -80,9 +77,13 @@ var startDate = 0;
 							}
 							
 							//Highchart
+							Highcharts.setOptions({
+						        colors: ['#AACCE2', '#E2AABE',  '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+						    });
 							Highcharts.chart('memorychart', {
 						        chart: {
-						            type: 'spline'
+						            type: 'spline',
+						            backgroundColor: '#f8f8f8'
 						        },
 						        title: {
 						            text: '기간별 메모리 사용량'
@@ -118,7 +119,7 @@ var startDate = 0;
 						                dataLabels: {
 						                    enabled: true,
 						                    style : {
-						                    	'fontSize' : '12px', 
+						                    	'fontSize' : '8px', 
 						                    	'fontWeight' : 'bold'
 						                    },
 						                    format : '{point.y:.0f}'
