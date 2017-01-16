@@ -8,7 +8,7 @@
 	<div id="memorydiv1" style="margin: 0 auto">
 		<!-- memory 정보 검색 할 수 있는 input 및 button -->
 		<div class="page-header">
-  			<h1><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  MEMORY 정보</h1>
+  			<h1><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  MEMORY 정보</h1>
 		</div>
 		<form class="form-inline">
 			<div class="form-group">
@@ -27,7 +27,6 @@
 			    <button type="button" class="btn btn-default" id="hour6">
 			    	<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 6시간
 			    </button>
-		    	현재시간 <span id="sysdate"></span>	
 		    </div>
 	    </form>
 	</div>

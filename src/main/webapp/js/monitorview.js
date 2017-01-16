@@ -47,11 +47,12 @@ $(function(){
 						
 						/* cpu Usage Chart 2 START */
 						Highcharts.chart('cpuusagechart2', {
-
+							chart: {
+					            backgroundColor: '#f8f8f8'
+					        },		
 					        title: {
-					            text: ''
+					        	text: 'CPU 사용량'
 					        },
-
 					        xAxis: {
 					            tickInterval: 1,
 					        },
@@ -59,7 +60,15 @@ $(function(){
 					        yAxis: {
 					            type: 'logarithmic',
 					            minorTickInterval: 0.1,
-					            max: 99
+					            max: 99,
+					            title: {
+					            	text: 'CPU 사용량(%)'
+					            },
+					            labels: {
+					                formatter: function () {
+					                    return this.value + "%";
+					                }
+					            }
 					        },
 
 					        tooltip: {
@@ -69,7 +78,8 @@ $(function(){
 
 					        series: [{
 					            data: cpuArray,
-					            pointStart: 1
+					            pointStart: 1,
+					            name: 'CPU USAGE'
 					        }]
 					    });
 						/* cpu Usage Chart 2 END */
@@ -79,7 +89,8 @@ $(function(){
 						var gaugeOptions = {
 
 						        chart: {
-						            type: 'solidgauge'
+						            type: 'solidgauge',
+						            backgroundColor: '#f8f8f8'
 						        },
 
 						        title: null,
@@ -178,10 +189,10 @@ $(function(){
 						var totalMemory = data.memoryInfo.totalMemory;
 						var freeMemory = data.memoryInfo.freeMemory;
 						var usedMemory = data.memoryInfo.usedMemory;
-						$('#usedMemory').html("<font color='red'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
-						$('#usedMemoryByGB').html("<font color='red'><b>실제 메모리 : </b></font><br>" + totalMemory + "MB<br>"
-								+ "<font color='green'><b>사용 가능한 메모리 : </b></font><br>" + freeMemory + "MB<br>"
-								+ "<font color='blue'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
+						$('#usedMemory').html("<font color='#AE758A'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
+						$('#usedMemoryByGB').html("<font color='#AE758A'><b>실제 메모리 : </b></font><br>" + totalMemory + "MB<br>"
+								+ "<font color='#A8E3A8'><b>사용 가능한 메모리 : </b></font><br>" + freeMemory + "MB<br>"
+								+ "<font color='#AACCE2'><b>사용중인 메모리 : </b></font><br>" + usedMemory + "MB");
 						
 						for(var i=0; i<9; i++){
 							memoryArray[i] = memoryArray[i+1];
@@ -190,7 +201,8 @@ $(function(){
 						
 						Highcharts.chart('memoryContainer', {
 					        chart: {
-					            type: 'spline'
+					            type: 'spline',
+					            backgroundColor: '#f8f8f8'
 					        },
 					        title: {
 					            text: '메모리 사용량'
@@ -251,7 +263,8 @@ $(function(){
 						/* stacked column chart  */
 						Highcharts.chart('memoryChart', {
 						        chart: {
-						            type: 'column'
+						            type: 'column',
+						            backgroundColor: '#f8f8f8'
 						        },
 						        title: {
 						            text: 'Memory'
@@ -313,7 +326,7 @@ $(function(){
 					var usablePercent = data.diskInfo.usable/data.diskInfo.total*100;
 					
 					Highcharts.setOptions({
-				        colors: ['#FF0000', '#4000FF', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+				        colors: ['#E2AABE', '#D9EEFD', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 				    });
 					
 				    Highcharts.chart('container', {
@@ -321,7 +334,8 @@ $(function(){
 				            plotBackgroundColor: null,
 				            plotBorderWidth: null,
 				            plotShadow: false,
-				            type: 'pie'
+				            type: 'pie',
+				            backgroundColor: '#f8f8f8'
 				        },
 				        title: {
 				            text: 'Check Disk Size'
@@ -398,7 +412,6 @@ $(function(){
 				url:"checkDiskDetail.htm",
 				dataType:"json",
 				success:function(data){
-					console.log(data.disklist);
 					var content = "<tr><th>Disk Name</th><th>Total Size(GB)</th><th>Usable Size(GB)</th><th>Used Size(GB)</th></tr>";
 					$.each(data.disklist,function(key,value) {
 						content += '<tr><td>'+value.name+'</td><td>'+value.total+'</td><td>'+value.usable+'</td><td>'+value.used+'</td></tr>';

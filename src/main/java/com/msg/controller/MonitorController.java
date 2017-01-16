@@ -96,7 +96,6 @@ public class MonitorController {
 	@RequestMapping("/memoryInfo.htm")
 	public String goMemoryInfo(Model model){
 		List<MemoryDTO> list = memoryInfoService.getAllMemoryInfo();
-		System.out.println(list);
 		model.addAttribute("allmemory", list);
 		return "memory.memoryInfo";
 	}

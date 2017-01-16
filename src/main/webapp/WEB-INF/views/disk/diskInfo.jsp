@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<div class="page-header">
+	<h1><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  DISK 정보</h1>
+</div>
 <div class="row" style="margin-top: 10%">
 <!-------------------------------------------------------------------------- 
 						DISK 용량을 텍스트 형태로 보여주는 부분
@@ -14,13 +16,13 @@
 		</form>
 		<form class="form-inline">
 			<div class="form-group">
-				<label for="exampleInputName2" style="color:red">사용 공간</label> 
+				<label for="exampleInputName2" style="color:#AE758A">사용 공간</label> 
 				<span id="use"></span>
 			</div>
 		</form>
 		<form class="form-inline">
 			<div class="form-group">
-				<label for="exampleInputName2" style="color:blue">사용가능 공간</label> 
+				<label for="exampleInputName2" style="color:#AACCE2">사용가능 공간</label> 
 				<span id="usable"></span>
 			</div>
 		</form>

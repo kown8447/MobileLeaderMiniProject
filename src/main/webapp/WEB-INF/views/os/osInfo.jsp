@@ -3,6 +3,9 @@
 <!-------------------------------------------------------------------------- 
 				OS 정보를 Table 형태로 보여주는 부분
  ---------------------------------------------------------------------------->
+<div class="page-header">
+	<h1><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  OS 정보</h1>
+</div>
 <div class="row" style="margin-left: 15%">
 	<table class="table table-striped table-condensed table-hover" style="width: 80%; margin-left: 3%; margin-top: 7%">
 		<tr><th colspan="2" style="text-align: center">OS 정보</td></tr>

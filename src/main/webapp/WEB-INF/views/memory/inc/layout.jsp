@@ -10,9 +10,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="js/memoryInfoView.js"></script>
-<title>Insert title here</title>
+<title>리소스 모니터링</title>
 </head>
-<body>
+<body style="background:#f8f8f8;">
 	<tiles:insertAttribute name="header"/>
 	<tiles:insertAttribute name="content"/>
 </body>

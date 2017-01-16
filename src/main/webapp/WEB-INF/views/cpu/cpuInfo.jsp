@@ -7,26 +7,25 @@
 	<div id="cpudiv1" style="margin: 0 auto">
 		<!-- cpu 정보 검색 할 수 있는 input 및 button -->
 		<div class="page-header">
-  			<h1><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  CPU 정보</h1>
+  			<h1><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  CPU 정보</h1>
 		</div>
 	    	<form class="form-inline">
 				<div class="form-group">
 		    		<input type="date" class="form-control" id="cpudate">
-		    		<button type="button" class="btn btn-default cpusearch" id="cpusearch">
+		    		<button type="button" class="btn btn-default" id="cpusearch">
 		    			<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색
 		    		</button>
 	    		</div>
 	    		<div>
-	    			<button type="button" class="btn btn-default cpusearch" id="cpusearch1hour">
+	    			<button type="button" class="btn btn-default" id="cpusearch1hour">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1시간
 					</button>
-					<button type="button" class="btn btn-default cpusearch" id="cpusearch3hour">
+					<button type="button" class="btn btn-default" id="cpusearch3hour">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 3시간
 		    		</button>
-		    		<button type="button" class="btn btn-default cpusearch" id="cpusearch6hour">
+		    		<button type="button" class="btn btn-default" id="cpusearch6hour">
 		    		<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 6시간
 		    		</button>
-	    			현재시간 <span id="sysdate"></span>
 	    		</div>
 	    	</form>
   		</div>

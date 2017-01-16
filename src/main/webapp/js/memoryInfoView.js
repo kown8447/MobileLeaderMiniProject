@@ -1,9 +1,6 @@
 var startDate = 0; 
 	
 	$(function(){
-		var now = new Date();
-		document.getElementById("sysdate").innerHTML = "<b>" + now.toLocaleDateString() + now.toLocaleTimeString() + "</b>";
-		
 		$('#hour').click(function(event){
 			startDate = 1;
 			$('#search').click();
@@ -44,7 +41,7 @@ var startDate = 0;
 								$('#memorytable').append("<tr><td>"+(i+1)+"</td><td>"+data.selected[i].regdate+"</td><td>"+data.selected[i].usedmemory+"</td></tr></tbody>");
 							}
 							startDate = 0;
-							$('#hour24').val(0);
+							$('#hour24').val("");
 							/*--------- 테이블 관리 ---------*/
 							
 							/*--------- 차트 관리 ---------*/
@@ -78,13 +75,15 @@ var startDate = 0;
 								seconds[i] = time[i][2].split('.')[0];
 								utcdate[i] = hour[i] + ":" + minute[i] + ":" + seconds[i];  
 							}
-							console.log(dateArray);
-							console.log(memoryArray);
 							
 							//Highchart
+							Highcharts.setOptions({
+						        colors: ['#AACCE2', '#E2AABE',  '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+						    });
 							Highcharts.chart('memorychart', {
 						        chart: {
-						            type: 'spline'
+						            type: 'spline',
+						            backgroundColor: '#f8f8f8'
 						        },
 						        title: {
 						            text: '기간별 메모리 사용량'
