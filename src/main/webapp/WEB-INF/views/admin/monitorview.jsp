@@ -88,8 +88,8 @@
 							MEMORY 사용량을 Percentage로 보여주는 부분
 			 	---------------------------------------------------------------------------->
 				<div class="row" style="height:280px; margin-left: 10%">
-					<div id="usedMemoryByGB" style="height:15%; position : relative; margin-top:5%;"></div>
-					<div id="memoryChart" style="height:85%; height:50%; margin: 0 auto;"></div>
+					<div id="usedMemoryByGB" style="height:100px; position : relative; margin-top:5%;"></div>
+					<div id="memoryChart" style="height:200px; margin: 0 auto;"></div>
 				</div>
 				<!-------------------------------------------------------------------------- 
 							MEMORY 사용량을 그래프 형태로 보여주는 부분
