@@ -64,3 +64,27 @@
 		</div>
 	</div>
 </div>
+<!-------------------------------------------------------------------------- 
+					Disk 용량이 10% 이하 남았을 경우 경고창
+---------------------------------------------------------------------------->
+<div class="modal fade" id="dsikAlert">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content modal-md">
+			<!-- header -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title" style="color:red"><b>디스크 경고</b></h4>
+			</div>
+			<!-- body -->
+			<div class="modal-body" id="modalBody">
+				디스크 용량이 10% 미만 남았습니다. 디스크 교체 또는 정리하는 것을 권장합니다.
+			</div>
+			<!-- Footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>

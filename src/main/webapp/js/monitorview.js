@@ -5,6 +5,7 @@
 */
 var cpuArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var memoryArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
 $(function(){
 	
 	/*
@@ -321,9 +322,13 @@ $(function(){
 					$('#total').text(data.diskInfo.total+'GB');
 					$('#usable').text(data.diskInfo.usable+'GB');
 					$('#use').text(data.diskInfo.use+'GB');
-					
+
 					var usePercent = data.diskInfo.use/data.diskInfo.total*100;
 					var usablePercent = data.diskInfo.usable/data.diskInfo.total*100;
+					
+					if(usablePercent < 10){
+						$("#dsikAlert").modal();
+					}
 					
 					Highcharts.setOptions({
 				        colors: ['#E2AABE', '#D9EEFD', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
