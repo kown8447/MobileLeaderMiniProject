@@ -428,4 +428,29 @@ $(function(){
 			}
 		);
 	});
+	
+	/*
+	 * @method name : execCrystalDiskInfo 익명함수
+	 * @description : 디스크 수명 확인 함수.
+	*/
+	$('#execCrystalDiskInfo').click(function(){
+		$.ajax(
+			{
+				url:"execCrystalDiskInfo.htm",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					if(data.crystalResult.healthStatus != '1'){
+						$('#healthStatus').html('<b><font color="red">디스크 수명이 10% 이하 남았습니다.</font><b>');
+					}else{
+						$('#healthStatus').html('<b><font color="green">좋음</font><b>');
+					}
+					$('#temperature').html(data.crystalResult.temperature+'℃');
+					$('#powerOnCount').html(data.crystalResult.powerOnCount+'회');
+					$('#powerOnHours').html(data.crystalResult.powerOnHours+'시간');
+					$('#diskLife').modal();
+				}
+			}	
+		);
+	});
 });

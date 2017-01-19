@@ -211,5 +211,16 @@ public class MonitorController {
 		return jsonview;
 	}
 	
+	/*
+	 * @method name : execProc
+	 * @description : 디스크 수명을 확인하기 위해 DiskInfoService 클래스를 호출하는 함수
+	*/
+	@RequestMapping("execCrystalDiskInfo.htm")
+	public View execProc(Model model){
+		Map<String, String> result = diskInfoService.executeCrystalDiskInfo();
+		model.addAttribute("crystalResult", result);
+		return jsonview;
+	}
+	
 
 }

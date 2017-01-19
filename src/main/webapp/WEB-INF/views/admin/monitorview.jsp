@@ -75,6 +75,7 @@
 						</div>
 					</form>
 					<input type="button" id="checkDiskDetail" class="btn btn-default" value="파티션별 용량 확인"/>
+					<input type="button" id="execCrystalDiskInfo" class="btn btn-success" value="디스크 수명 확인"/>
 				</div>
 				<!-------------------------------------------------------------------------- 
 							DISK 용량을 Chart 형태로 보여주는 부분
@@ -166,6 +167,48 @@
 							<table id="resultDiskDetail" class="table table-bordered">
 								<tr>
 									<th>Disk Name</th><th>Total Size(GB)</th><th>Usable Size(GB)</th><th>Used Size(GB)</th>
+								</tr>
+							</table>
+						</div>
+						<!-- Footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-------------------------------------------------------------------------- 
+							Disk 수명을 확인하는 Modal
+			 ---------------------------------------------------------------------------->
+			<div class="modal fade" id="diskLife">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content modal-lg">
+						<!-- header -->
+						<div class="modal-header">
+							<!-- 닫기(x) 버튼 -->
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<!-- header title -->
+							<h4 class="modal-title">디스크 수명 확인</h4>
+						</div>
+						<!-- body -->
+						<div class="modal-body" id="modalBody">
+							<table class="table table-bordered">
+								<tr>
+									<th style="text-align: center">구분</th><th style="text-align: center">값</th>
+								</tr>
+								<tr style="text-align: center">
+									<td>건강상태</td><td id="healthStatus"></td>
+								</tr>
+								<tr style="text-align: center">
+									<td>온도</td><td id="temperature"></td>
+								</tr>
+								<tr style="text-align: center">
+									<td>사용횟수</td><td id="powerOnCount"></td>
+								</tr>
+								<tr style="text-align: center">
+									<td>사용시간</td><td id="powerOnHours"></td>
 								</tr>
 							</table>
 						</div>

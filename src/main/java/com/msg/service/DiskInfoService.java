@@ -1,6 +1,9 @@
 package com.msg.service;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,5 +124,63 @@ public class DiskInfoService {
 	*/
 	private int toMBNonString(long size) {
 		return (int) (size / (1024 * 1024));
+	}
+	
+	/*
+	 * @method name : executeCrystalDiskInfo
+	 * @description : crystalDiskInfo.exe 를 실행시켜, log를 통한 disk 수명을 확인하고 정보를 return 하는 함수
+	*/
+	public Map<String, String> executeCrystalDiskInfo(){
+		String directory ="D:\\diskinfo\\DiskInfo.exe";
+		Runtime rt = Runtime.getRuntime();
+		Process p;
+		BufferedReader br = null;
+		FileInputStream fis = null;
+		InputStreamReader isr = null;
+		File file = new File("D:\\diskinfo\\Smart\\RevuAhn_950X NeoFD0707581A1200059504\\Smart.ini");
+		String temp ="";
+		String content = "";
+		String healthStatus="";
+		String temperature="";
+		String powerOnCount="";
+		String powerOnHours="";
+		Map<String, String> result = new HashMap<String, String>();
+		
+		try {
+			p = rt.exec(directory);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			fis = new FileInputStream(file);
+			isr = new InputStreamReader(fis, "UTF-8");
+			br = new BufferedReader(isr);
+			
+			while((temp = br.readLine())!=null){
+				if(temp.contains("HealthStatus")){
+					String[] split = temp.split("=");
+					healthStatus = split[1];
+					result.put("healthStatus", healthStatus);
+				}else if(temp.contains("Temperature")){
+					String[] split = temp.split("=");
+					temperature = split[1];
+					result.put("temperature", temperature);
+				}else if(temp.contains("PowerOnCount")){
+					String[] split = temp.split("=");
+					powerOnCount = split[1];
+					result.put("powerOnCount", powerOnCount);
+				}else if(temp.contains("PowerOnHours")){
+					String[] split = temp.split("=");
+					powerOnHours = split[1];
+					result.put("powerOnHours", powerOnHours);
+				}
+				content += temp + "\n";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }
