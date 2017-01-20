@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+<script src="${pageContext.request.contextPath}/js/main.js" type="text/javascript"></script>
 <title>리소스 모니터링</title>
 </head>
 <body style="background:#f8f8f8;">

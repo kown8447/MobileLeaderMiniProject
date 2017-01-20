@@ -26,7 +26,6 @@
 			}
 </style>
 <script src="${pageContext.request.contextPath}/js/monitorview.js" type="text/javascript"></script>
-
 <title>Server System Monitor</title>
 </head>
 <body>

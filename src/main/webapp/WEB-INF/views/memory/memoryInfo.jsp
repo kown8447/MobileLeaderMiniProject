@@ -37,15 +37,6 @@
     	<div id="memorychart" style="width:70%; float:left"></div>
     	<div id="memorytablediv" class="table-responsive" style="width:30%; height:300px; float:right;">
 		    <table id="memorytable" class="table table-hover" style="text-align:center;">
-		      <thead>
-		        <tr style="position:relative;top:expression(this.offsetParent.scrollTop);">
-		          <th style="text-align:center;">번호</th>
-		          <th style="text-align:center;">날짜</th>
-		          <th style="text-align:center;">사용량(MB)</th>
-		        </tr>
-		      </thead>
-		      <tbody id="tbodylist" style="text-align:center; width:100%; height: 350px;">
-		      </tbody>
 		    </table>
 	    </div>
 	</div>

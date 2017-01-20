@@ -5,7 +5,7 @@
 	<!-- ===============================================/*
 	/*                    Clock                         /*
 	/* =============================================== -->			
-	<div class="clock">
+	<div class="clock" style="margin-top: 10%">
 	  <div class="top"></div>
 	  <div class="right"></div>
 	  <div class="bottom"></div>
@@ -20,7 +20,7 @@
 	<!-- ===============================================/*
 	/*                    Shelf                         /*
 	/* =============================================== -->
-	<div id="shelf">
+	<div id="shelf" style="margin-top: 10%">
 		<ul>
 			<!-- iPad -->
 			<li class="ipad"></li>

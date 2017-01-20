@@ -1,3 +1,50 @@
+$(function() {
+      var nav = $('.fixed_nav');
+      //表示位置 표시위치
+      var navTop = nav.offset().top+100;
+      //ナビゲーションの高さ（シャドウの分だけ足してます）出るタイミング
+      //네비게이션의 높이(???) 나올 타이밍
+      var navHeight = nav.height()+10;
+      var showFlag = false;
+      nav.css('top', -navHeight+'px');
+      //ナビゲーションの位置まできたら表示
+      //네비게이션 위치까지 오면 표시
+      $(window).scroll(function () {
+          var winTop = $(this).scrollTop();
+          if (winTop >= navTop) {
+              if (showFlag == false) {
+                  showFlag = true;
+                  nav
+                      .addClass('fixed')
+                      .stop().animate({'top' : '0px'}, 500);
+                      //表示速度
+                  //표시속도
+              }
+          } else if (winTop <= navTop) {
+              if (showFlag) {
+                  showFlag = false;
+                  nav.stop().animate({'top' : -navHeight+'px'}, 500, function(){
+                      nav.removeClass('fixed');
+                  });
+              }
+          }
+      });
+  });
+
+  $(function(){
+      var headerHight = 50;
+     $('a[href^=#]').click(function() {
+        var speed = 400;
+        var href= $(this).attr("href");
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        var position = target.offset().top-headerHight;
+        $('body,html').animate({scrollTop:position}, speed, 'swing');
+        return false;
+     });
+  });
+
+
+
 $('.hour, .minute, .second').data('plus-deg', 0)
 calcTime();
 $('#clock').addClass('aminate');

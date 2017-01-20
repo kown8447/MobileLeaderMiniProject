@@ -10,6 +10,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="${pageContext.request.contextPath}/js/monitorview.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/main.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 <title>리소스 모니터링</title>
 </head>
 <body style="background:#f8f8f8;">

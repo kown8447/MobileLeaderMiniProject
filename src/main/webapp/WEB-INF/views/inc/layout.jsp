@@ -11,6 +11,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 <title>리소스 모니터링</title>
 </head>
 <body>
