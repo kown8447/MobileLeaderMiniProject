@@ -1,14 +1,9 @@
 $(function() {
       var nav = $('.fixed_nav');
-      //表示位置 표시위치
       var navTop = nav.offset().top+100;
-      //ナビゲーションの高さ（シャドウの分だけ足してます）出るタイミング
-      //네비게이션의 높이(???) 나올 타이밍
       var navHeight = nav.height()+10;
       var showFlag = false;
       nav.css('top', -navHeight+'px');
-      //ナビゲーションの位置まできたら表示
-      //네비게이션 위치까지 오면 표시
       $(window).scroll(function () {
           var winTop = $(this).scrollTop();
           if (winTop >= navTop) {
@@ -17,8 +12,6 @@ $(function() {
                   nav
                       .addClass('fixed')
                       .stop().animate({'top' : '0px'}, 500);
-                      //表示速度
-                  //표시속도
               }
           } else if (winTop <= navTop) {
               if (showFlag) {
